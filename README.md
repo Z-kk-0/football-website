@@ -62,7 +62,7 @@ als **Player**
 möchte ich **meine Anmeldung zu einem Trainingstermin wieder stornieren**,
 damit **mein Platz freigegeben wird, falls ich verhindert bin**
 # ERD Diagramm
-```Mermaid
+```mermaid
 erDiagram
   roles ||--o{ users : " "
   users ||--o{ refresh_tokens : " "
