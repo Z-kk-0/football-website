@@ -63,7 +63,6 @@ möchte ich **meine Anmeldung zu einem Trainingstermin wieder stornieren**,
 damit **mein Platz freigegeben wird, falls ich verhindert bin**
 # ERD Diagramm
 ```mermaid
-
 erDiagram
   roles {
     int role_id PK
@@ -72,7 +71,7 @@ erDiagram
 
   users {
     int user_id PK
-    varchar email UNIQUE
+    varchar email UK
     varchar password_hash
     varchar first_name
     varchar last_name
@@ -152,7 +151,7 @@ erDiagram
     int user_id FK
     boolean is_read
     timestamp read_at
-    PK notification_id,user_id
+    PK notification_id user_id
   }
 
   audit_logs {
