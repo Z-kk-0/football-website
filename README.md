@@ -63,6 +63,7 @@ möchte ich **meine Anmeldung zu einem Trainingstermin wieder stornieren**,
 damit **mein Platz freigegeben wird, falls ich verhindert bin**
 # ERD Diagramm
 ```mermaid
+
 erDiagram
   roles {
     int role_id PK
