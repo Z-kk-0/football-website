@@ -63,6 +63,7 @@ möchte ich **meine Anmeldung zu einem Trainingstermin wieder stornieren**,
 damit **mein Platz freigegeben wird, falls ich verhindert bin**
 # ERD Diagramm
 ```mermaid
+
 erDiagram
   roles {
     int role_id PK
@@ -104,21 +105,10 @@ erDiagram
     varchar file_path
     varchar category
     varchar formation
-    int current_version_id FK
     int created_by FK
     int folder_id FK
     timestamp created_at
     timestamp updated_at
-  }
-
-  play_versions {
-    int version_id PK
-    int play_id FK
-    varchar file_path
-    int version_number
-    varchar comment
-    int created_by FK
-    timestamp created_at
   }
 
   training_sessions {
@@ -138,45 +128,14 @@ erDiagram
     timestamp timestamp
   }
 
-  notifications {
-    int notification_id PK
-    varchar message
-    varchar link
-    timestamp created_at
-    int created_by FK
-  }
-
-  user_notifications {
-    int notification_id FK
-    int user_id FK
-    boolean is_read
-    timestamp read_at
-    PK notification_id user_id
-  }
-
-  audit_logs {
-    int log_id PK
-    varchar entity_type
-    int entity_id
-    varchar action
-    varchar description
-    int created_by FK
-    timestamp created_at
-  }
-
   roles ||--o{ users : ""
   users ||--o{ refresh_tokens : ""
   users ||--o{ folders : ""
   folders ||--o{ folders : "parent"
-  users ||--o{ plays : ""
   folders ||--o{ plays : ""
-  plays ||--o{ play_versions : ""
-  users ||--o{ play_versions : ""
+  users ||--o{ plays : ""
   users ||--o{ training_sessions : ""
   training_sessions ||--o{ training_attendance : ""
   users ||--o{ training_attendance : ""
-  notifications ||--o{ user_notifications : ""
-  users ||--o{ notifications : ""
-  users ||--o{ user_notifications : ""
-  users ||--o{ audit_logs : ""
+
 ```
