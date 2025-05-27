@@ -64,37 +64,32 @@ damit **mein Platz freigegeben wird, falls ich verhindert bin**
 # ERD Diagramm
 ```mermaid
 erDiagram
-  roles ||--o{ users : " "
-  users ||--o{ refresh_tokens : " "
-  users ||--o{ folders : " "
-  users ||--o{ plays : " "
-  users ||--o{ training_sessions : " "
-  users ||--o{ training_attendance : " "
-  folders ||--o{ plays : " "
-  folders ||--o{ folders : parent
-  training_sessions ||--o{ training_attendance : " "
-
   roles {
     int role_id PK
     varchar name
   }
+
   users {
     int user_id PK
-    varchar email
+    varchar email UNIQUE
     varchar password_hash
+    varchar first_name
+    varchar last_name
     varchar status
     timestamp created_at
     timestamp updated_at
     int role_id FK
   }
+
   refresh_tokens {
     int token_id PK
+    int user_id FK
     varchar token
     timestamp expiry
     timestamp created_at
     timestamp revoked_at
-    int user_id FK
   }
+
   folders {
     int folder_id PK
     varchar name
@@ -102,17 +97,30 @@ erDiagram
     int created_by FK
     timestamp created_at
   }
+
   plays {
     int play_id PK
     varchar name
     varchar file_path
     varchar category
     varchar formation
+    int current_version_id FK
     int created_by FK
     int folder_id FK
     timestamp created_at
     timestamp updated_at
   }
+
+  play_versions {
+    int version_id PK
+    int play_id FK
+    varchar file_path
+    int version_number
+    varchar comment
+    int created_by FK
+    timestamp created_at
+  }
+
   training_sessions {
     int training_id PK
     varchar title
@@ -121,6 +129,7 @@ erDiagram
     int created_by FK
     timestamp created_at
   }
+
   training_attendance {
     int attendance_id PK
     int training_id FK
@@ -128,4 +137,46 @@ erDiagram
     varchar status
     timestamp timestamp
   }
+
+  notifications {
+    int notification_id PK
+    varchar message
+    varchar link
+    timestamp created_at
+    int created_by FK
+  }
+
+  user_notifications {
+    int notification_id FK
+    int user_id FK
+    boolean is_read
+    timestamp read_at
+    PK notification_id,user_id
+  }
+
+  audit_logs {
+    int log_id PK
+    varchar entity_type
+    int entity_id
+    varchar action
+    varchar description
+    int created_by FK
+    timestamp created_at
+  }
+
+  roles ||--o{ users : ""
+  users ||--o{ refresh_tokens : ""
+  users ||--o{ folders : ""
+  folders ||--o{ folders : "parent"
+  users ||--o{ plays : ""
+  folders ||--o{ plays : ""
+  plays ||--o{ play_versions : ""
+  users ||--o{ play_versions : ""
+  users ||--o{ training_sessions : ""
+  training_sessions ||--o{ training_attendance : ""
+  users ||--o{ training_attendance : ""
+  notifications ||--o{ user_notifications : ""
+  users ||--o{ notifications : ""
+  users ||--o{ user_notifications : ""
+  users ||--o{ audit_logs : ""
 ```
