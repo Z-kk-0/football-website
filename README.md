@@ -54,7 +54,7 @@ damit **ich den Überblick über angemeldete und abgemeldete Spieler behalte**
 
 als **Player**
 möchte ich **mich zu einem Trainingstermin anmelden**,
-damit **mein Coach weiß, dass ich teilnehme**
+damit **mein Coach weiss, dass ich teilnehme**
 
 ## User Story 10
 
