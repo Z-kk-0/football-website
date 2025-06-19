@@ -102,6 +102,7 @@ erDiagram
   User {
     int id
     string username
+    string email
     string password
   }
 
