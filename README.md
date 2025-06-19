@@ -1,14 +1,15 @@
 # football-website
-
 ## User Story 1 Registration
 **Als** Benutzer  
 **möchte ich** mich registrieren und Rollen wie Coach oder Spieler annehmen können  
 **damit** ich Teams erstellen oder ihnen beitreten kann, abhängig von meiner Rolle in jedem Team.
+
 ### Akzeptanzkriterien
 - Der Benutzer kann sich registrieren, **ohne** eine Rolle auszuwählen.
 - Nach der Registrierung kann der Benutzer ein Team erstellen und wird automatisch **Admin** dieses Teams.
 - Der Benutzer kann nach der Registrierung **einem bestehenden Team beitreten**, entweder als Coach oder als Spieler.
 - Ein Benutzer kann in **mehreren Teams mit unterschiedlichen Rollen** gleichzeitig aktiv sein.
+
 ## User Story 2 Login/Logout
 **Als** Benutzer  
 **möchte ich** mich an- und abmelden können  
@@ -19,6 +20,7 @@
 - Der Benutzer bleibt angemeldet, bis er sich **explizit abmeldet**.
 - Der Benutzer kann sich **jederzeit abmelden**.
 - Nach dem Abmelden hat der Benutzer **keinen Zugriff** mehr auf seine Teams, bis er sich erneut anmeldet.
+
 ## User Story 3 Rollen verwaltung in Teams
 **Als** Admin eines Teams  
 **möchte ich** beigetretenen Benutzern die Rollen Spieler oder Coach und Admin zuweisen können  
@@ -28,39 +30,37 @@
 - Der Admin sieht eine Liste von all den Benutzer in seinem Team
 - Der Admin kann den Benutzern Rollen zuweisen
 - Ein Benutzer kann **mehrere Rollen gleichzeitig in einem Team** haben. z. B. Spieler und Admin.
+
 - Es muss **mindestens ein Admin pro Team** vorhanden sein.
-## User Story 4 Playbook Erstellen
+## User Story 4 Plays Erstellen
 **Als** Coach  
-**möchte ich** Plays und Ordner erstellen können  
-**damit** meine Spieler eine **strukturierte und übersichtliche Ansicht** auf die Spielzüge haben.
+**möchte ich** Plays erstellen können  
+**damit** meine Spieler eine **Ansicht** auf die Spielzüge haben.
 
 ### Akzeptanzkriterien
-- Der Coach kann **Plays mit Name, Beschreibung und Bild** erstellen.
-- Der Coach kann **Ordner mit Name** erstellen.
-- Der Coach kann Plays **Ordnern zuweisen 
+- Der Coach kann **Plays mit Name** erstellen.
 - Spieler sehen **nur die Plays**, die im Kontext **ihres eigenen Teams** erstellt wurden.
-- Die **Play-Ansicht für Spieler ist read-only** – sie können Inhalte **nicht bearbeiten oder verschieben**.
-- Die Ordnerstruktur ist **pro Team individuell und unabhängig** von anderen Teams.
-## User Story 5 Playbook Bearbeiten und Löschen
+- Die **Play-Ansicht für Spieler ist read-only** – sie können Inhalte **nicht bearbeiten**
+
+## User Story 5 Plays Bearbeiten und Löschen
 **Als** Coach  
-**möchte ich** Plays und Ordner bearbeiten und löschen können  
+**möchte ich** Plays bearbeiten und löschen können  
 **damit** ich mein Playbook aktuell halten und veraltete Inhalte entfernen kann
 
 
 ### Aktzeptanzkriterien
-- Der Coach kann **Plays und Ordner bearbeiten**, z. B. Name, Beschreibung, Bild (bei Plays).
-- Der Coach kann **Plays und Ordner zwischen Ordnern verschieben**.
-- Der Coach kann **Plays und Ordner löschen** – inkl. Bestätigungsdialog (z. B. „Willst du das wirklich löschen?“).
+- Der Coach kann **Plays bearbeiten**.
+- Der Coach kann **Plays löschen** – inkl. Bestätigungsdialog (z. B. „Willst du das wirklich löschen?“).
 - **Nur Coaches und Admins** des jeweiligen Teams können Inhalte bearbeiten oder löschen.
 - **Spieler haben keinen Zugriff auf Bearbeiten oder Löschen.**
 
 ## User Story 6 Spieler in Teams einladen
-**Als** Admin
-**möchte ich** User in meinem Team einladen
-**damit** ich Leute in meinem Team habe
+**Als** Admin <br/>
+**möchte ich** User in meinem Team einladen <br/>
+**damit** ich Leute in meinem Team habe <br/>
 
 ### Aktzeptanzkriterien
-- Der Admin kann **eine Einladung per E-Mail oder Username senden**
+- Der Admin kann **eine Einladung anhand der E-Mail oder Username senden**
 - Eingeladene User müssen die Einladung **annehmen**, bevor sie im Team sind
 - Der Admin kann beim Einladen **eine Rolle (z. B. Spieler, Coach)** festlegen
 - User sehen ihre offenen Einladungen und können **annehmen oder ablehnen**
@@ -68,28 +68,28 @@
 - Ein User kann nur **einmal pro Team eingeladen werden**
 
 ## User Story 7 Teams verlassen
-**Als** User
-**möchte ich** Teams verlassen
-**damit** ich mich von Teams trennen kann, die für mich nicht mehr relevant sind
+**Als** User <br/>
+**möchte ich** Teams verlassen <br/>
+**damit** ich mich von Teams trennen kann, die für mich nicht mehr relevant sind <br/>
 
 ### Aktzeptanzkriterien
 - Jeder User kann **ein Team verlassen**, in dem er Mitglied ist
 - Wenn der User der **einzige Admin** des Teams ist, muss vorher ein anderer Admin bestimmt werden (damit das Team nicht „adminlos“ wird)
 - Beim Verlassen wird die entsprechende **TeamMembership gelöscht**
-- Der User hat danach **keinen Zugriff mehr** auf Inhalte des Teams (Plays, Folders etc.)
+- Der User hat danach **keinen Zugriff mehr** auf Inhalte des Teams 
 - Es gibt eine **Bestätigung** vorm Verlassen („Willst du wirklich Team X verlassen?“)
 
 ## User Story 8 Team-Mitglieder entfernen
-**Als** Admin  
-**möchte ich** Mitglieder aus meinem Team entfernen  
-**damit** ich die Kontrolle darüber habe, wer Teil des Teams ist
+**Als** Admin  <br/>
+**möchte ich** Mitglieder aus meinem Team entfernen  <br/>
+**damit** ich die Kontrolle darüber habe, wer Teil des Teams ist <br/>
 
 ### Aktzeptanzkriterien
 - **Nur Admins** dürfen Mitglieder aus dem Team entfernen
 - Ein Admin kann **alle Rollen eines Users** im Team entfernen, also z. B. auch Coaches
 - Admins können **keine anderen Admins entfernen**, außer sie sind **mehrere Admins vorhanden**
 - Wenn ein Admin einen anderen Admin kicken will, muss es mindestens **einen Admin danach noch geben**
-- Der entfernte User verliert sofort: Zugriff auf Plays, Folders, alles vom Team
+- Der entfernte User verliert sofort: Zugriff auf alles vom Team
 - Admin bekommt eine **Warnung/Bestätigung**, bevor ein Mitglied entfernt wird („Willst du Person X wirklich aus Team X entfernen?“)
 
 User Stories wurden von ChatGPT nur minimal umgeschrieben und korrigiert
@@ -116,6 +116,12 @@ erDiagram
     string[] roles
   }
 
+  Play {
+    int id
+    int team_id
+    string content
+  }
+
   TeamInvitation {
     int id
     int team_id
@@ -126,32 +132,14 @@ erDiagram
     datetime created_at
   }
 
-  Folder {
-    int id
-    string name
-    int team_id
-    int parent_id
-  }
+  User ||--o{ TeamMembership : is_part_of
+  Team ||--o{ TeamMembership : has_members
 
-  Play {
-    int id
-    string name
-    string description
-    string image
-    int folder_id
-    int team_id
-  }
+  Team ||--o{ Play : has_plays
 
-  User ||--o{ TeamMembership : has
-  Team ||--o{ TeamMembership : has
-
-  Team ||--o{ Folder : has
-  Folder ||--o{ Play : contains
-  Team ||--o{ Play : has
-  Folder ||--o{ Folder : nests
-
-  Team ||--o{ TeamInvitation : has
+  Team ||--o{ TeamInvitation : sends
   User ||--o{ TeamInvitation : receives
+
 
 
 ```
