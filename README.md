@@ -62,6 +62,8 @@ User Stories wurden von ChatGpt nur minimal umgeschrieben und korrigiert
 
 erDiagram
 
+ erDiagram
+
   User {
     int id
     string username
@@ -77,10 +79,6 @@ erDiagram
     int user_id
     int team_id
     string[] roles
-  }
-
-  Playbook {
-    int team_id
   }
 
   Folder {
@@ -100,11 +98,12 @@ erDiagram
 
   User ||--o{ TeamMembership : has
   Team ||--o{ TeamMembership : has
-  Team ||--|| Playbook : owns
-  Playbook ||--o{ Folder : contains
-  Folder ||--o{ Play : contains
+
   Team ||--o{ Folder : has
+  Folder ||--o{ Play : contains
+
   Team ||--o{ Play : has
+
 
 
 ```
