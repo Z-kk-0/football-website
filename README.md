@@ -61,77 +61,50 @@ User Stories wurden von ChatGpt nur minimal umgeschrieben und korrigiert
 ```mermaid
 
 erDiagram
-  roles {
-    int role_id PK
-    varchar name
+
+  User {
+    int id
+    string username
+    string password
   }
 
-  users {
-    int user_id PK
-    varchar email UK
-    varchar password_hash
-    varchar first_name
-    varchar last_name
-    varchar status
-    timestamp created_at
-    timestamp updated_at
-    int role_id FK
+  Team {
+    int id
+    string name
   }
 
-  refresh_tokens {
-    int token_id PK
-    int user_id FK
-    varchar token
-    timestamp expiry
-    timestamp created_at
-    timestamp revoked_at
+  TeamMembership {
+    int user_id
+    int team_id
+    string[] roles
   }
 
-  folders {
-    int folder_id PK
-    varchar name
-    int parent_folder_id FK
-    int created_by FK
-    timestamp created_at
+  Playbook {
+    int team_id
   }
 
-  plays {
-    int play_id PK
-    varchar name
-    varchar file_path
-    varchar category
-    varchar formation
-    int created_by FK
-    int folder_id FK
-    timestamp created_at
-    timestamp updated_at
+  Folder {
+    int id
+    string name
+    int team_id
   }
 
-  training_sessions {
-    int training_id PK
-    varchar title
-    timestamp session_datetime
-    varchar location
-    int created_by FK
-    timestamp created_at
+  Play {
+    int id
+    string name
+    string description
+    string image
+    int folder_id
+    int team_id
   }
 
-  training_attendance {
-    int attendance_id PK
-    int training_id FK
-    int user_id FK
-    varchar status
-    timestamp timestamp
-  }
+  User ||--o{ TeamMembership : has
+  Team ||--o{ TeamMembership : has
+  Team ||--|| Playbook : owns
+  Playbook ||--o{ Folder : contains
+  Folder ||--o{ Play : contains
+  Team ||--o{ Folder : has
+  Team ||--o{ Play : has
 
-  roles ||--o{ users : ""
-  users ||--o{ refresh_tokens : ""
-  users ||--o{ folders : ""
-  folders ||--o{ folders : "parent"
-  folders ||--o{ plays : ""
-  users ||--o{ plays : ""
-  users ||--o{ training_sessions : ""
-  training_sessions ||--o{ training_attendance : ""
-  users ||--o{ training_attendance : ""
 
 ```
