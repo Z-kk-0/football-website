@@ -56,7 +56,7 @@
 
 User Stories wurden von ChatGpt nur minimal umgeschrieben und korrigiert
 
-#ERD Diagramm
+# ERD Diagramm
 
 ```mermaid
 
@@ -108,3 +108,7 @@ erDiagram
 
 
 ```
+Das Mermaid diagramm wurde mit hilfe von ChatGPT erstellt jedoch geplant von mir
+
+# Endpoint planung
+
