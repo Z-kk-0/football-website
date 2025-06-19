@@ -52,9 +52,11 @@
 - Der Coach kann **Plays und Ordner zwischen Ordnern verschieben**.
 - Der Coach kann **Plays und Ordner löschen** – inkl. Bestätigungsdialog (z. B. „Willst du das wirklich löschen?“).
 - **Nur Coaches und Admins** des jeweiligen Teams können Inhalte bearbeiten oder löschen.
-- **Spieler haben keinen Zugriff auf Bearbeiten oder Löschen.**# ERD Diagramm
+- **Spieler haben keinen Zugriff auf Bearbeiten oder Löschen.**
 
 User Stories wurden von ChatGpt nur minimal umgeschrieben und korrigiert
+
+#ERD Diagramm
 
 ```mermaid
 
