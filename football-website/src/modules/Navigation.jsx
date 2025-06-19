@@ -12,6 +12,7 @@ export default function Navigation() {
                     <a href="/public">Public</a>
                     <a href="/login">Login</a>
                     <a href="/private">Private</a>
+                    <a href="/logout">Logout</a>
                 </li>
             </ul>
         </nav>

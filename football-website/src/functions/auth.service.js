@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const login = (username, password) => {
     return axios
         .post('http://localhost:8080/api/auth/login',
@@ -14,17 +15,21 @@ const login = (username, password) => {
             throw error;
         })
 };
+
 const logout = () => {
     localStorage.removeItem("user");
 };
 const getCurrentUser = () => {
-    return JSON.parse(
-        localStorage.getItem("user")
-    );
+    return JSON.parse(localStorage.getItem("user"));
 };
+const getJwtHeader = () => {
+    let tok = JSON.parse(localStorage.getItem("user")).token
+    return {headers: {Authorization: `Bearer ${tok}`}}
+}
 const AuthService = {
     login,
     logout,
+    getJwtHeader,
     getCurrentUser,
 }
 export default AuthService;
