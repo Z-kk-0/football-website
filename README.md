@@ -188,4 +188,4 @@ Das Mermaid diagramm wurde mit hilfe von ChatGPT erstellt jedoch geplant von mir
 | `POST /invitations/:invId/accept`       | Membership + Einladung status       |
 
 
-
+Die Ordnung und Formattierung ist von ChatGPT gemacht
