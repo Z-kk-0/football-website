@@ -54,7 +54,45 @@
 - **Nur Coaches und Admins** des jeweiligen Teams können Inhalte bearbeiten oder löschen.
 - **Spieler haben keinen Zugriff auf Bearbeiten oder Löschen.**
 
-User Stories wurden von ChatGpt nur minimal umgeschrieben und korrigiert
+## User Story 6 Spieler in Teams einladen
+**Als** Admin
+**möchte ich** User in meinem Team einladen
+**damit** ich Leute in meinem Team habe
+
+### Aktzeptanzkriterien
+- Der Admin kann **eine Einladung per E-Mail oder Username senden**
+- Eingeladene User müssen die Einladung **annehmen**, bevor sie im Team sind
+- Der Admin kann beim Einladen **eine Rolle (z. B. Spieler, Coach)** festlegen
+- User sehen ihre offenen Einladungen und können **annehmen oder ablehnen**
+- **Nur Admins eines Teams** dürfen Leute einladen
+- Ein User kann nur **einmal pro Team eingeladen werden**
+
+## User Story 7 Teams verlassen
+**Als** User
+**möchte ich** Teams verlassen
+**damit** ich mich von Teams trennen kann, die für mich nicht mehr relevant sind
+
+### Aktzeptanzkriterien
+- Jeder User kann **ein Team verlassen**, in dem er Mitglied ist
+- Wenn der User der **einzige Admin** des Teams ist, muss vorher ein anderer Admin bestimmt werden (damit das Team nicht „adminlos“ wird)
+- Beim Verlassen wird die entsprechende **TeamMembership gelöscht**
+- Der User hat danach **keinen Zugriff mehr** auf Inhalte des Teams (Plays, Folders etc.)
+- Es gibt eine **Bestätigung** vorm Verlassen („Willst du wirklich Team X verlassen?“)
+
+## User Story 8 Team-Mitglieder entfernen
+**Als** Admin  
+**möchte ich** Mitglieder aus meinem Team entfernen  
+**damit** ich die Kontrolle darüber habe, wer Teil des Teams ist
+
+### Aktzeptanzkriterien
+- **Nur Admins** dürfen Mitglieder aus dem Team entfernen
+- Ein Admin kann **alle Rollen eines Users** im Team entfernen, also z. B. auch Coaches
+- Admins können **keine anderen Admins entfernen**, außer sie sind **mehrere Admins vorhanden**
+- Wenn ein Admin einen anderen Admin kicken will, muss es mindestens **einen Admin danach noch geben**
+- Der entfernte User verliert sofort: Zugriff auf Plays, Folders, alles vom Team
+- Admin bekommt eine **Warnung/Bestätigung**, bevor ein Mitglied entfernt wird („Willst du Person X wirklich aus Team X entfernen?“)
+
+User Stories wurden von ChatGPT nur minimal umgeschrieben und korrigiert
 
 # ERD Diagramm
 
@@ -76,6 +114,16 @@ erDiagram
     int user_id
     int team_id
     string[] roles
+  }
+
+  TeamInvitation {
+    int id
+    int team_id
+    int invited_user_id
+    string invited_email
+    string[] roles
+    string status  "pending | accepted | rejected"
+    datetime created_at
   }
 
   Folder {
@@ -100,8 +148,11 @@ erDiagram
   Team ||--o{ Folder : has
   Folder ||--o{ Play : contains
   Team ||--o{ Play : has
-
   Folder ||--o{ Folder : nests
+
+  Team ||--o{ TeamInvitation : has
+  User ||--o{ TeamInvitation : receives
+
 
 ```
 Das Mermaid diagramm wurde mit hilfe von ChatGPT erstellt jedoch geplant von mir
