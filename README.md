@@ -59,10 +59,7 @@ User Stories wurden von ChatGpt nur minimal umgeschrieben und korrigiert
 # ERD Diagramm
 
 ```mermaid
-
 erDiagram
-
- erDiagram
 
   User {
     int id
@@ -85,6 +82,7 @@ erDiagram
     int id
     string name
     int team_id
+    int parent_id
   }
 
   Play {
@@ -101,10 +99,9 @@ erDiagram
 
   Team ||--o{ Folder : has
   Folder ||--o{ Play : contains
-
   Team ||--o{ Play : has
 
-
+  Folder ||--o{ Folder : nests
 
 ```
 Das Mermaid diagramm wurde mit hilfe von ChatGPT erstellt jedoch geplant von mir
