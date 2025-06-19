@@ -146,4 +146,46 @@ erDiagram
 Das Mermaid diagramm wurde mit hilfe von ChatGPT erstellt jedoch geplant von mir
 
 # Endpoint planung
+## Teams
+|**Methode**|**Endpoint**|**Beschreibung**|
+|---|---|---|
+|`DELETE`|`/teams/:teamId/leave`|Team verlassen
+
+## Member-Verwaltung
+
+| **Methode** | **Endpoint**                     | **Beschreibung**                         |
+| ----------- | -------------------------------- | ---------------------------------------- |
+| `PUT`       | `/teams/:teamId/members/:userId` | Rollen eines Users im Team aktualisieren |
+| `DELETE`    | `/teams/:teamId/members/:userId` | User aus dem Team entfernen              |
+| `GET`       | `/teams/:teamId/members/`        |                                          |
+
+## Einladungen
+| **Methode** | **Endpoint**                 | **Beschreibung**         |
+| ----------- | ---------------------------- | ------------------------ |
+| `POST`      | `/teams/:teamId/invitations` | Einladung an User senden |
+| `POST`      | `/invitations/:invId/accept` | Einladung annehmen       |
+| `POST`      | `/invitations/:invId/reject` | Einladung ablehnen       |
+## Plays
+| **Methode** | **Endpoint**           | **Beschreibung**                             |
+| ----------- | ---------------------- | -------------------------------------------- |
+| `POST`      | `/teams/:teamId/plays` | Neues Play erstellen (einfacher Text-String) |
+| `GET`       | `teams/:teamId/plays`  | Alle Plays anzeigen                          |
+| `PUT`       | `/plays/:playId`       | Play bearbeiten (Text ersetzen)              |
+| `DELETE`    | `/plays/:playId`       | Play löschen                                 |
+## Auth
+|**Methode**|**Endpoint**|**Beschreibung**|
+|---|---|---|
+|`POST`|`/api/auth/register`|Benutzer registrieren|
+|`POST`|`/api/auth/login`|Benutzer einloggen|
+
+## Transaktionssichere Endpoints
+
+| Endpoint                                | Warum?                              |
+| --------------------------------------- | ----------------------------------- |
+| `PUT /teams/:teamId/members/:userId`    | Admin-Rollen dürfen nicht wegfallen |
+| `DELETE /teams/:teamId/members/:userId` | Letzten Admin schützen              |
+| `DELETE /teams/:teamId/leave`           | Selbst verlassen, letzter Admin?    |
+| `POST /invitations/:invId/accept`       | Membership + Einladung status       |
+
+
 
