@@ -28,6 +28,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Build & run tests
+      - name: Build & run tests on H2
         working-directory: backend
+        env:
+          SPRING_DATASOURCE_URL: jdbc:h2:mem:testdb
+          SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.h2.Driver
+          SPRING_JPA_HIBERNATE_DDL_AUTO: create-drop
         run: mvn --batch-mode verify
