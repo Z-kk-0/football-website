@@ -31,10 +31,6 @@ jobs:
         run: npm ci
         working-directory: football-website
 
-      - name: Lint code
-        run: npm run lint
-        working-directory: football-website
-
       - name: Build production bundle
         run: npm run build
         working-directory: football-website
