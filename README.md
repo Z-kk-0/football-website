@@ -190,3 +190,131 @@ Das Mermaid diagramm wurde mit hilfe von ChatGPT erstellt jedoch geplant von mir
 
 
 Die Ordnung und Formattierung ist von ChatGPT gemacht
+
+```mermaid
+classDiagram
+    %% Entities
+    class Team {
+        +Long id
+        +String name
+    }
+    class Play {
+        +Long id
+        +Long teamId
+        +String content
+    }
+    class TeamInvitation {
+        +Long id
+        +Long teamId
+        +Long invitedUserId
+        +String invitedEmail
+        +TeamRole role
+        +InvitationStatus status
+        +DateTime createdAt
+    }
+    class TeamMembership {
+        +Long userId
+        +Long teamId
+        +TeamRole role
+    }
+    class User {
+        +id: Long
+        +username: String
+        +email: String
+        +password: String
+        +roles: Set~Role~
+    }
+
+    %% Enums
+    class TeamRole {
+        <<enumeration>>
+        ADMIN
+        COACH
+        PLAYER
+    }
+    class InvitationStatus {
+        <<enumeration>>
+        PENDING
+        ACCEPTED
+        REJECTED
+    }
+
+    %% Controllers
+    class TeamController {
+        +leaveTeam(teamId, userId)
+        +updateRole(teamId, userId, roles)
+        +removeUserFromTeam(teamId, userId)
+        +getAllMembersFromTeam(teamId)
+    }
+    class PlayController {
+        +getAllPlays(teamId)
+        +createPlay(teamId, content)
+        +updatePlay(playId, content)
+        +deletePlay(playId)
+    }
+    class TeamInvitationController {
+        +invitePlayer(teamId, invitedUserId)
+        +acceptInvite(invitationId)
+        +rejectInvite(invitationId)
+    }
+
+    %% Services
+    class TeamService {
+        +Team createTeam(String name, User creator)
+        +void leaveTeam(Long teamId, Long userId)
+        +void updateRole(Long teamId, Long userId, TeamRole role)
+        +void removeUser(Long teamId, Long userId)
+        +List<TeamMembership> getMembers(Long teamId)
+    }
+    class PlayService {
+        +List<Play> getAllPlays(Long teamId)
+        +Play createPlay(Long teamId, String content)
+        +Play updatePlay(Long playId, String content)
+        +void deletePlay(Long playId)
+    }
+    class TeamInvitationService {
+        +TeamInvitation invitePlayer(Long teamId, Long invitedUserId, TeamRole role)
+        +TeamInvitation acceptInvite(Long invitationId, Long userId)
+        +TeamInvitation rejectInvite(Long invitationId, Long userId)
+    }
+
+    %% Repositories
+    interface TeamRepository 
+        TeamRepository: +Optional<Team> findById(Long teamId)
+        TeamRepository: +List<Team> findAllByUserId(Long userID)
+    
+    interface PlayRepository 
+       PlayRepository: +List<Play> findALLLByTeamId()
+    
+    interface TeamInvitationRepository 
+       TeamInvitationRepository: +List<TeamInvitation> findInvitedUserId(Long userId)
+        TeamInvitationRepository: +Optional<TeamInvitation> findById(Long invitationId)
+
+
+    Team "1" *-- "0..*" Play             : plays
+    Team "1" *-- "0..*" TeamInvitation   : invitations
+    Team "1" *-- "0..*" TeamMembership   : memberships
+
+    User "1" o-- "*" TeamMembership      : memberships
+    TeamMembership "*" -- "1" User       : user
+    TeamMembership "*" -- "1" Team       : team
+    TeamInvitation "*" -- "1" Team       : team
+    TeamInvitation "*" -- "1" User       : invitedUser
+
+    TeamController ..> TeamService
+    PlayController ..> PlayService
+    TeamInvitationController ..> TeamInvitationService
+
+    TeamService ..> TeamRepository
+    TeamService ..> TeamMembership
+    TeamService ..> TeamInvitation
+
+    PlayService ..> PlayRepository
+    PlayService ..> TeamRepository
+
+    TeamInvitationService ..> TeamInvitationRepository
+    TeamInvitationService ..> TeamRepository
+    TeamInvitationService ..> User
+
+```
+Das Klassendiagramm wurde von ChatGPT korrigiert.
