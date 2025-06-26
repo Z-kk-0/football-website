@@ -1,4 +1,7 @@
 # football-website
+# Informieren
+
+# Planen
 ## User Story 1 Registration
 **Als** Benutzer  
 **möchte ich** mich registrieren und Rollen wie Coach oder Spieler annehmen können  
@@ -94,7 +97,9 @@
 
 User Stories wurden von ChatGPT nur minimal umgeschrieben und korrigiert
 
-# ERD Diagramm
+## Backend Plan
+
+### ERD Diagramm
 
 ```mermaid
 erDiagram
@@ -146,13 +151,13 @@ erDiagram
 ```
 Das Mermaid diagramm wurde mit hilfe von ChatGPT erstellt jedoch geplant von mir
 
-# Endpoint planung
-## Teams
+### Endpoint planung
+#### Teams
 |**Methode**|**Endpoint**|**Beschreibung**|
 |---|---|---|
 |`DELETE`|`/teams/:teamId/leave`|Team verlassen
 
-## Member-Verwaltung
+#### Member-Verwaltung
 
 | **Methode** | **Endpoint**                     | **Beschreibung**                         |
 | ----------- | -------------------------------- | ---------------------------------------- |
@@ -160,26 +165,26 @@ Das Mermaid diagramm wurde mit hilfe von ChatGPT erstellt jedoch geplant von mir
 | `DELETE`    | `/teams/:teamId/members/:userId` | User aus dem Team entfernen              |
 | `GET`       | `/teams/:teamId/members/`        |                                          |
 
-## Einladungen
+#### Einladungen
 | **Methode** | **Endpoint**                 | **Beschreibung**         |
 | ----------- | ---------------------------- | ------------------------ |
 | `POST`      | `/teams/:teamId/invitations` | Einladung an User senden |
 | `POST`      | `/invitations/:invId/accept` | Einladung annehmen       |
 | `POST`      | `/invitations/:invId/reject` | Einladung ablehnen       |
-## Plays
+#### Plays
 | **Methode** | **Endpoint**           | **Beschreibung**                             |
 | ----------- | ---------------------- | -------------------------------------------- |
 | `POST`      | `/teams/:teamId/plays` | Neues Play erstellen (einfacher Text-String) |
 | `GET`       | `teams/:teamId/plays`  | Alle Plays anzeigen                          |
 | `PUT`       | `/plays/:playId`       | Play bearbeiten (Text ersetzen)              |
 | `DELETE`    | `/plays/:playId`       | Play löschen                                 |
-## Auth
+#### Auth
 |**Methode**|**Endpoint**|**Beschreibung**|
 |---|---|---|
 |`POST`|`/api/auth/register`|Benutzer registrieren|
 |`POST`|`/api/auth/login`|Benutzer einloggen|
 
-## Transaktionssichere Endpoints
+#### Transaktionssichere Endpoints
 
 | Endpoint                                | Warum?                              |
 | --------------------------------------- | ----------------------------------- |
@@ -190,6 +195,8 @@ Das Mermaid diagramm wurde mit hilfe von ChatGPT erstellt jedoch geplant von mir
 
 
 Die Ordnung und Formattierung ist von ChatGPT gemacht
+
+### Klassendiagramm
 
 ```mermaid
 classDiagram
@@ -318,3 +325,67 @@ classDiagram
 
 ```
 Das Klassendiagramm wurde von ChatGPT korrigiert.
+
+## Frontend-Plan 
+
+### Tech-Stack
+
+* **Framework**: React mit JavaScript
+
+### UI-Guidelines
+* **Design-Prinzipien**: Minimal, funktional first, Design later, ausreichend Weissraum, konsistente Farbpalette (z.B. Primary: #1E3A8A, Secondary: #FBBF24)
+
+### Seiten & Komponenten
+
+#### 1. Auth-Seiten
+
+* **LoginPage**: Formular mit Username & Passwort, „Bestätigen“-Button, Link zur Registrierung
+* **RegisterPage**: Formular mit Username, E-Mail, Passwort, Bestätigen-Button
+
+#### 2. Team Dashboard 
+
+* **TeamDashboardPage**: Übersicht des einen Teams mit folgenden Bereichen:
+
+  * **Mitglieder**: Liste aller Mitglieder mit Rollen-Badges und Admin-Aktionen
+
+  * **Plays**: Liste aller Plays mit Name und Aktion je nach Rolle
+
+    **Component Breakdown**:
+
+  * **MemberList**: Zeigt alle Mitglieder und ermöglicht Rollen-Updates
+
+  * **PlayList**: Auflistung aller Plays mit Buttons zum Bearbeiten/Löschen (für Admin/Coach)
+
+  * **PlayEditorModal**: Modal zum Erstellen oder Bearbeiten eines Plays
+
+###  Routing-Plan
+
+```txt
+/login        → LoginPage
+/register     → RegisterPage
+/team         → TeamDashboardPage
+/team/plays/ → ReadOnlyPlayView
+/team/members/ -> Team Member View Admin only
+/notlogin -> nicht eingeloggte User sind hier
+```
+
+###  API-Integration
+
+* **Service-Ordner**:
+
+  * `services/auth.js` (login, register)
+  * `services/team.js` (getTeamDetails, updateRole,)
+  * `services/play.js` (getPlays, createPlay, updatePlay, deletePlay)
+
+* **Funktionen**:
+
+  * `login(credentials)`, `register(data)`
+
+  * `getMembers()`, `updateRole(userId, roles)`
+
+  * `getPlays()`, `createPlay(content)`, `updatePlay(playId, content)`, `deletePlay(playId)`
+
+###  Testing
+
+* **Unit Tests**: Jest + React Testing Library für wichtige Komponenten (Auth, MemberList, PlayEditor)
+
