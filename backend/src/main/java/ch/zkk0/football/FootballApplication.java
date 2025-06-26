@@ -21,8 +21,9 @@ public class FootballApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         if (roleRepository.count() == 0) {
-            roleRepository.save(new Role(ERole.ROLE_USER));
+            roleRepository.save(new Role(ERole.ROLE_PLAYER));
             roleRepository.save(new Role(ERole.ROLE_ADMIN));
+            roleRepository.save(new Role(ERole.ROLE_COACH));
         }
     }
 }

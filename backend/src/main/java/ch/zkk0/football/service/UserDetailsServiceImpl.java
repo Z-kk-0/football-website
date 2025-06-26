@@ -27,10 +27,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
-        List<GrantedAuthority> authorities = new ArrayList<>(); // important role to authorities mapping
-        for (Role r : user.getRoles()) {
-            authorities.add(new SimpleGrantedAuthority(r.toString()));
-        }
-        return UserDetailsImpl.build(user);
+
+        List<GrantedAuthority> authorities = Collections.singletonList(
+                new SimpleGrantedAuthority(user.getRole().getName().name()));
     }
 }

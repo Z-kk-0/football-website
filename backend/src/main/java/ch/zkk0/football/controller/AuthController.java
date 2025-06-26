@@ -1,8 +1,6 @@
 package ch.zkk0.football.controller;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -83,29 +81,10 @@ public class AuthController {
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
         User user = new User(request.getUsername(), request.getEmail(), encoder.encode(request.getPassword()));
-        Set<String> strRoles = request.getRoles();
-        Set<Role> roles = new HashSet<>();
-        if (strRoles == null) {
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role not found."));
-            roles.add(userRole);
-        } else {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "admin":
-                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role not found."));
-                        roles.add(adminRole);
-                        break;
-                    default:
-                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role not found."));
-                        roles.add(userRole);
-                }
-            });
-        }
-        user.setRoles(roles);
+        Role role = roleRepository.findByName(ERole.valueOf(request.getRole()));
+        user.setRole(role);
         userRepository.save(user);
+
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 }

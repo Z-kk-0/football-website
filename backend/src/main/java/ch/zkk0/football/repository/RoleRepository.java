@@ -10,5 +10,5 @@ import ch.zkk0.football.model.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
-    Optional<Role> findByName(ERole name);
+    Role findByName(ERole name);
 }

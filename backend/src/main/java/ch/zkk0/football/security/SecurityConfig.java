@@ -49,7 +49,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    private static final String[] EVERYONE = { "/public", "/api/auth/**" };
+    private static final String[] EVERYONE = { "/public", "/api/auth/**", };
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
