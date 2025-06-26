@@ -409,3 +409,14 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 ### Wireframe
 ![football-website drawio](https://github.com/user-attachments/assets/a628c20c-3ad1-4e24-8203-2902aa1b123a)
 
+# Realisieren
+# Kontrollieren
+# Auswerten
+## Arbeitsjournal
+### 19.07.2025
+Arbeitspakete Informieren und User Stories abgeschlossen Backend Planung angefangen. Userstories haben länger gebraucht als ich gedacht habe als 4 std waren es realistisch 6 std
+### 26.06.2025
+Arbeitspakete Backend Planung und Frontend Planung abgeschlossen. Die planung brauchte bei beiden nur 4 std und ich habe mich entschieden das Projekt kleiner zu machen und die Multi Team Funktionen rausnehmen durch die wenig verfügbare zeit. Der Arbeitsplan ist nun auch da!
+
+
+
