@@ -385,7 +385,11 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 
   * `getPlays()`, `createPlay(content)`, `updatePlay(playId, content)`, `deletePlay(playId)`
 
+
 ###  Testing
 
 * **Unit Tests**: Jest + React Testing Library für wichtige Komponenten (Auth, MemberList, PlayEditor)
+
+### Wireframe
+![football-website drawio](https://github.com/user-attachments/assets/a628c20c-3ad1-4e24-8203-2902aa1b123a)
 
