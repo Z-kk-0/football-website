@@ -5,19 +5,19 @@
 ## Arbeitsplan
 | Arbeitspaket                           | Aufwand     | Status |
 | -------------------------------------- | ----------- | ------ |
-| Informieren                            | 2 std       |    - [x]   |
-| User Stories                           | 2 std       |      - [x]  |
-| Backend Plan                           | 6 std       |       -[x] |
-| Frontend Plan                          | 6 std       |       -[x] |
-| Vervollständigung User Impl backend    | 3 std       |       -[ ] |
-| Team Impl backend                      | 4 std       |       -[ ] |
-| Play Impl backend                      | 4 std       |        -[ ]|
-| Dashboard Impl Frontend                | 6 std       |        -[ ]|
-| Login / logout erweiterung falls nötig | 6 std       |       -[ ] |
-| plays impl frontend                    | 6 std       |       -[ ] |
-| members impl frontend                  | 6 std       |       -[ ] |
-| Frontend Design                        | 6 std       |       -[ ] |
-| Optionale erweiterungen (OPTIONAl      | Undefiniert |       -[ ] |
+| Informieren                            | 2 std       |    fertig  |
+| User Stories                           | 2 std       |     fertig   |
+| Backend Plan                           | 6 std       |       fertig |
+| Frontend Plan                          | 6 std       |       fertig |
+| Vervollständigung User Impl backend    | 3 std       |       in progress |
+| Team Impl backend                      | 4 std       |       noch nicht begonnen |
+| Play Impl backend                      | 4 std       |        noch nicht begonnen|
+| Dashboard Impl Frontend                | 6 std       |       noch nicht begonnen |
+| Login / logout erweiterung falls nötig | 6 std       |        noch nicht begonnen|
+| plays impl frontend                    | 6 std       |        noch nicht begonnen|
+| members impl frontend                  | 6 std       |        noch nicht begonnen|
+| Frontend Design                        | 6 std       |      noch nicht begonnen |
+| Optionale erweiterungen (OPTIONAl      | Undefiniert |      noch nicht begonnen |
 ## User Story 1 Registration
 **Als** Benutzer  
 **möchte ich** mich registrieren und Rollen wie Coach oder Spieler annehmen können  
