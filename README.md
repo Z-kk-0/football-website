@@ -365,8 +365,8 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 /register     → RegisterPage
 /team         → TeamDashboardPage
 /team/plays/ → ReadOnlyPlayView
-/team/members/ -> Team Member View Admin only
-/notlogin -> nicht eingeloggte User sind hier
+/team/members/ → Team Member View Admin only
+/notlogin → nicht eingeloggte User sind hier
 ```
 
 ###  API-Integration
