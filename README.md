@@ -2,6 +2,22 @@
 # Informieren
 
 # Planen
+## Arbeitsplan
+| Arbeitspaket                           | Aufwand     | Status |
+| -------------------------------------- | ----------- | ------ |
+| Informieren                            | 2 std       |    - [x]   |
+| User Stories                           | 2 std       |      - [x]  |
+| Backend Plan                           | 6 std       |       -[x] |
+| Frontend Plan                          | 6 std       |       -[x] |
+| Vervollständigung User Impl backend    | 3 std       |       -[ ] |
+| Team Impl backend                      | 4 std       |       -[ ] |
+| Play Impl backend                      | 4 std       |        -[ ]|
+| Dashboard Impl Frontend                | 6 std       |        -[ ]|
+| Login / logout erweiterung falls nötig | 6 std       |       -[ ] |
+| plays impl frontend                    | 6 std       |       -[ ] |
+| members impl frontend                  | 6 std       |       -[ ] |
+| Frontend Design                        | 6 std       |       -[ ] |
+| Optionale erweiterungen (OPTIONAl      | Undefiniert |       -[ ] |
 ## User Story 1 Registration
 **Als** Benutzer  
 **möchte ich** mich registrieren und Rollen wie Coach oder Spieler annehmen können  
