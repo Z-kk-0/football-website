@@ -10,15 +10,15 @@
 | User Stories                           | 2 std       |     fertig   |
 | Backend Plan                           | 6 std       |       fertig |
 | Frontend Plan                          | 6 std       |       fertig |
-| Vervollständigung User Impl backend    | 3 std       |       in progress |
-| Team Impl backend                      | 4 std       |       noch nicht begonnen |
+| Vervollständigung User Impl backend    | 3 std       |       fertig |
+| Team Impl backend                      | 4 std       |       in progress |
 | Play Impl backend                      | 4 std       |        noch nicht begonnen|
 | Dashboard Impl Frontend                | 6 std       |       noch nicht begonnen |
 | Login / logout erweiterung falls nötig | 6 std       |        noch nicht begonnen|
 | plays impl frontend                    | 6 std       |        noch nicht begonnen|
 | members impl frontend                  | 6 std       |        noch nicht begonnen|
 | Frontend Design                        | 6 std       |      noch nicht begonnen |
-| Optionale erweiterungen (OPTIONAl      | Undefiniert |      noch nicht begonnen |
+| Optionale erweiterungen      | Undefiniert |      noch nicht begonnen |
 ## User Story 1 Registration
 **Als** Benutzer  
 **möchte ich** mich registrieren und Rollen wie Coach oder Spieler annehmen können  
@@ -418,6 +418,7 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 Arbeitspakete Informieren und User Stories abgeschlossen Backend Planung angefangen. Userstories haben länger gebraucht als ich gedacht habe als 4 std waren es realistisch 6 std
 ### 26.06.2025
 Arbeitspakete Backend Planung und Frontend Planung abgeschlossen. Die planung brauchte bei beiden nur 4 std und ich habe mich entschieden das Projekt kleiner zu machen und die Multi Team Funktionen rausnehmen durch die wenig verfügbare zeit. Der Arbeitsplan ist nun auch da!
-
+### 27.06.2025
+Arbeitspaket Vervollständigung User Impl backend. Hatte einige schwierigkeiten mit den AuthTokens aber war alles noch im Zeitramen realistisch genau soviel zeit gebraucht wie eingeplant :)
 
 

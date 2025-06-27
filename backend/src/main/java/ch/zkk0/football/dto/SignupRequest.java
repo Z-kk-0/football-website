@@ -2,6 +2,7 @@ package ch.zkk0.football.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,8 +19,8 @@ public class SignupRequest {
     @Size(max = 50)
     @Email
     private String email;
-
-    private Set<String> roles;
+    @NotNull
+    private String role;
 
     @NotBlank
     @Size(min = 6, max = 40)
