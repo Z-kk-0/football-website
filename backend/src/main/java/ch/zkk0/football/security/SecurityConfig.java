@@ -57,6 +57,14 @@ public class SecurityConfig {
 
     private static final String[] EVERYONE = { "/public", "/api/auth/**"};
 
+    /**
+     * Configures and returns the application's HTTP security filter chain.
+     *
+     * Sets up CORS, disables CSRF, configures stateless session management, and defines authorization rules for various endpoints, including public, user, and play-related routes. Integrates a custom authentication entry point, authentication provider, and JWT token filter into the security chain.
+     *
+     * @return the configured SecurityFilterChain
+     * @throws Exception if an error occurs during security configuration
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()).cors(Customizer.withDefaults())

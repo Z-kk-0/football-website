@@ -26,18 +26,38 @@ public class PlayController {
     @Autowired 
     PlayRepository playRepository; 
 
+    /**
+     * Retrieves all Play entities.
+     *
+     * @return a ResponseEntity containing the list of all Play objects and HTTP status 200 (OK)
+     */
     @GetMapping
     public ResponseEntity<List<Play>> getAllPlays() {
         List<Play> plays = playRepository.findAll();
         return ResponseEntity.ok(plays);
     }
 
+    /**
+     * Creates a new Play entity from the provided request body and returns the saved entity with HTTP status 201 (Created).
+     *
+     * @param request the Play object to be created, validated from the request body
+     * @return the created Play entity wrapped in a ResponseEntity with HTTP status 201 (Created)
+     */
     @PostMapping
     public ResponseEntity<Play> createPlay(@Valid @RequestBody Play request) {
         Play saved = playRepository.save(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
+    /**
+     * Updates the content of an existing Play entity identified by its ID.
+     *
+     * If the Play with the specified ID exists, its content is updated with the value from the request body and the updated entity is returned with HTTP 200 OK. If the entity does not exist, returns HTTP 404 Not Found.
+     *
+     * @param Id the ID of the Play entity to update
+     * @param request the Play object containing the new content
+     * @return a ResponseEntity containing the updated Play and HTTP status 200, or HTTP status 404 if not found
+     */
     @PutMapping("/{Id}")
     public ResponseEntity<Play> updatePlay(@PathVariable Long Id, @Valid @RequestBody Play request) {
         return playRepository.findById(Id)
@@ -49,7 +69,16 @@ public class PlayController {
         .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}")
+    /**
+ * Deletes a Play entity by its ID.
+ *
+ * If the Play with the specified ID does not exist, returns HTTP 404 Not Found.
+ * If deletion is successful, returns HTTP 204 No Content.
+ *
+ * @param id the ID of the Play to delete
+ * @return a ResponseEntity indicating the outcome of the deletion
+ */
+@DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePlay(@PathVariable Long id) {
         if (!playRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
