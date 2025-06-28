@@ -1,5 +1,7 @@
 package ch.zkk0.football.security;
 
+import java.net.http.HttpRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AnyRequestMatcher;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -54,6 +57,15 @@ public class SecurityConfig {
 
     private static final String[] EVERYONE = { "/public", "/api/auth/**"};
 
+    /**
+     * Configures and returns the application's HTTP security filter chain.
+     *
+     * Sets up stateless JWT-based authentication, custom unauthorized handling, and role-based access control for various endpoints. Disables CSRF protection, enables CORS, and defines authorization rules for public, authenticated, and admin-only routes.
+     *
+     * @param http the HttpSecurity to configure
+     * @return the configured SecurityFilterChain
+     * @throws Exception if an error occurs during configuration
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()).cors(Customizer.withDefaults())
@@ -63,7 +75,11 @@ public class SecurityConfig {
                         .requestMatchers(EVERYONE).permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/users/*/role").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/users").authenticated()
-                        .requestMatchers("/private").authenticated());
+                        .requestMatchers("/private").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/plays").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/plays").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/plays/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/plays/*").hasRole("ADMIN"));
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationJwtTokenFilter(),
                 UsernamePasswordAuthenticationFilter.class);

@@ -11,8 +11,8 @@
 | Backend Plan                           | 6 std       |       fertig |
 | Frontend Plan                          | 6 std       |       fertig |
 | Vervollständigung User Impl backend    | 3 std       |       fertig |
-| Team Impl backend                      | 4 std       |       in progress |
-| Play Impl backend                      | 4 std       |        noch nicht begonnen|
+| Team Impl backend                      | 4 std       |      nicht nötig |
+| Play Impl backend                      | 4 std       |        fertig|
 | Dashboard Impl Frontend                | 6 std       |       noch nicht begonnen |
 | Login / logout erweiterung falls nötig | 6 std       |        noch nicht begonnen|
 | plays impl frontend                    | 6 std       |        noch nicht begonnen|
@@ -420,5 +420,7 @@ Arbeitspakete Informieren und User Stories abgeschlossen Backend Planung angefan
 Arbeitspakete Backend Planung und Frontend Planung abgeschlossen. Die planung brauchte bei beiden nur 4 std und ich habe mich entschieden das Projekt kleiner zu machen und die Multi Team Funktionen rausnehmen durch die wenig verfügbare zeit. Der Arbeitsplan ist nun auch da!
 ### 27.06.2025
 Arbeitspaket Vervollständigung User Impl backend. Hatte einige schwierigkeiten mit den AuthTokens aber war alles noch im Zeitramen realistisch genau soviel zeit gebraucht wie eingeplant :)
+### 28.06.2025
+Arbeitspaket Play Impl backend. Keine Schwierigkeiten hier. Hab eine Fehlplanung mit Teams gemacht, da wir eh nur ein Team haben brauchen wir auch nichts gespeichert im Backend. Plays war einfach zu implementieren und hat kürzer gedauert wie geplant, da es ja auch kein DTO oder weiteres braucht. Also heute viel Schmerz und leid gespart.
 
 
