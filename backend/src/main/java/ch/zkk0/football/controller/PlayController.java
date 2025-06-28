@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ch.zkk0.football.model.Play;
 import ch.zkk0.football.repository.PlayRepository;
-import ch.zkk0.football.util.ApiResponse;
+
 import jakarta.validation.Valid;
 
 @RestController
