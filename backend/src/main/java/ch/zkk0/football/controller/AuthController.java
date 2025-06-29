@@ -30,7 +30,7 @@ import ch.zkk0.football.security.JwtUtils;
 import ch.zkk0.football.security.UserDetailsImpl;
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
