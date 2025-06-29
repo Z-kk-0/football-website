@@ -1,8 +1,9 @@
 import {useNavigate} from 'react-router-dom';
 import AuthService from '../functions/auth.service';
 import React, {useState} from 'react';
+
 export default function Login() {
-    const redirect = useNavigate();
+    const navigate = useNavigate();
     const [entries, setEntries] = useState({username: "", password: ""})
     function store(e) {
         setEntries({
@@ -16,8 +17,7 @@ export default function Login() {
             AuthService.login(entries.username, entries.password)
                 .then((res) => {
                     if (res.username) {
-                        redirect(0);
-                        // that actually does the redirect correctly
+                    navigate("/");
                     }
                 })
                 .catch((err) => {

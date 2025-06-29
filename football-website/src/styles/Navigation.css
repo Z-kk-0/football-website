@@ -1,15 +1,32 @@
 nav ul {
   display: flex;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+}
 
-  & > li {
-    list-style: none;
-    border: 1px solid grey;
-    border-radius: 5px;
-    margin: 2px;
-    & > a {
-      font-size: 1.3em;
-      font-weight: bold;
-      padding: 15px 20px;
-    }
-  }
+nav ul li {
+  list-style: none;
+  border: 2px solid var(--color-secondary); /* Navy-Blau */
+  border-radius: 6px;
+  margin: 2px;
+  transition: background-color 0.2s ease;
+}
+
+nav ul li a {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-text);
+  padding: 10px 16px;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+nav ul li:hover {
+  background-color: var(--color-secondary); /* Fill */
+}
+
+nav ul li:hover a {
+  color: white;
 }

@@ -9,6 +9,8 @@ import Public from './modules/Public'
 import Login from './modules/Login'
 import Private from './modules/Private'
 import Logout from './modules/Logout'
+import Register from './modules/Register'
+import NoLogin from './modules/NoLogin'
 
 function App() {
     return (
@@ -21,6 +23,8 @@ function App() {
                 <Route path="login" element={<Login />} />
                 <Route path="private" element={< Private />} />
                 <Route path="logout" element={<Logout />} />
+                <Route path="register" element={<Register />} />
+                <Route path="nologin" element={<NoLogin />} />
             </Route>
         </Routes>
     )
