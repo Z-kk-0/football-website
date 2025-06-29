@@ -1,9 +1,17 @@
-import {redirect} from "react-router-dom";
+import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 import AuthService from "../functions/auth.service";
-
-const delay = ms => new Promise(res => setTimeout(res, ms));
+import {useAuth} from "./AuthContext";
 
 export default function Logout() {
-    AuthService.logout();
-    delay(500).then(() => {redirect("/");});
+    const navigate = useNavigate();
+    const {logout} = useAuth();
+    useEffect(() => {
+        logout();
+        setTimeout(() => {
+            navigate("/", {replace: true});
+        }, 500);
+    }, [logout, navigate]);
+
+    return null;
 }
