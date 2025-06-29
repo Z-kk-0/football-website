@@ -20,8 +20,6 @@ import ch.zkk0.football.model.Role;
 import ch.zkk0.football.model.User;
 import ch.zkk0.football.repository.RoleRepository;
 import ch.zkk0.football.repository.UserRepository;
-import lombok.Getter;
-import lombok.Setter;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
