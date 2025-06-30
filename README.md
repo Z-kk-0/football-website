@@ -13,10 +13,10 @@
 | Vervollständigung User Impl backend    | 3 std       |       fertig |
 | Team Impl backend                      | 4 std       |      nicht nötig |
 | Play Impl backend                      | 4 std       |        fertig|
-| Dashboard Impl Frontend                | 3 std       |       noch nicht begonnen |
-| Login / logout erweiterung falls nötig | 3 std       |        noch nicht begonnen|
-| plays impl frontend                    | 3 std       |        noch nicht begonnen|
-| members impl frontend                  | 3 std       |        noch nicht begonnen|
+| Dashboard Impl Frontend                | 3 std       |       fertig |
+| Login / logout erweiterung falls nötig | 3 std       |        fertig|
+| plays impl frontend                    | 3 std       |        fertig|
+| members impl frontend                  | 3 std       |        in progress|
 | Testplan                        | 1 std       |      noch nicht begonnen |
 | Frontend Tests                       | 3 std       |      noch nicht begonnen |
 | Backend Tests                        | 3 std       |      noch nicht begonnen |
@@ -419,12 +419,16 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 # Auswerten
 ## Arbeitsjournal
 ### 19.07.2025
-Arbeitspakete Informieren und User Stories abgeschlossen Backend Planung angefangen. Userstories haben länger gebraucht als ich gedacht habe als 4 std waren es realistisch 6 std
+**Arbeitspakete** Informieren und User Stories abgeschlossen Backend Planung angefangen. Userstories haben länger gebraucht als ich gedacht habe als 4 std waren es realistisch 6 std
 ### 26.06.2025
-Arbeitspakete Backend Planung und Frontend Planung abgeschlossen. Die planung brauchte bei beiden nur 4 std und ich habe mich entschieden das Projekt kleiner zu machen und die Multi Team Funktionen rausnehmen durch die wenig verfügbare zeit. Der Arbeitsplan ist nun auch da!
+**Arbeitspakete** Backend Planung und Frontend Planung abgeschlossen. Die planung brauchte bei beiden nur 4 std und ich habe mich entschieden das Projekt kleiner zu machen und die Multi Team Funktionen rausnehmen durch die wenig verfügbare zeit. Der Arbeitsplan ist nun auch da!
 ### 27.06.2025
-Arbeitspaket Vervollständigung User Impl backend. Hatte einige schwierigkeiten mit den AuthTokens aber war alles noch im Zeitramen realistisch genau soviel zeit gebraucht wie eingeplant :)
+**Arbeitspakete** Vervollständigung User Impl backend. Hatte einige schwierigkeiten mit den AuthTokens aber war alles noch im Zeitramen realistisch genau soviel zeit gebraucht wie eingeplant :)
 ### 28.06.2025
-Arbeitspaket Play Impl backend. Keine Schwierigkeiten hier. Hab eine Fehlplanung mit Teams gemacht, da wir eh nur ein Team haben brauchen wir auch nichts gespeichert im Backend. Plays war einfach zu implementieren und hat kürzer gedauert wie geplant, da es ja auch kein DTO oder weiteres braucht. Also heute viel Schmerz und leid gespart.
+**Arbeitspakete** Play Impl backend. Keine Schwierigkeiten hier. Hab eine Fehlplanung mit Teams gemacht, da wir eh nur ein Team haben brauchen wir auch nichts gespeichert im Backend. Plays war einfach zu implementieren und hat kürzer gedauert wie geplant, da es ja auch kein DTO oder weiteres braucht. Also heute viel Schmerz und leid gespart.
+### 29.06.2025
+**Arbeitspakete** Login / logout erweiterung falls nötig. Ich habe die login logout features vorgezogen, da dass Registrieren ja auch dazu gehört und allgemein einen Angenehmen workflow zu haben. Die weiterleitung und die NoLogin Page war ein bisschen nervig aber sonst keine probleme habe sehr viel weniger zeit gebraucht als 6 std habe ich Realistisch 2 gebraucht deswegen habe ich mich entschieden, für die weiteren Frontend elemente die Zeit zu kürzen.
+### 30.06.2025
+**Arbeitspakete** Dashboard Impl Frontend und plays impl frontend. Keine probleme hier. Habe auch noch das feature eingebaut mit einem hasRole tool um Permissionchecking einfacher zu machen. Sonst nichts spezielles beides hat zusammen etwa 4 std gebraucht was in rahmen war die 3 std Zeit ist nun sehr gut weil ich so noch eine stunde buffer habe.
 
 
