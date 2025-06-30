@@ -19,9 +19,6 @@ const login = (username, password) => {
 const logout = () => {
     localStorage.removeItem("user");
 };
-const getCurrentUser = () => {
-    return JSON.parse(localStorage.getItem("user"));
-};
 const getJwtHeader = () => {
     let tok = JSON.parse(localStorage.getItem("user")).token
     return {headers: {Authorization: `Bearer ${tok}`}}
@@ -37,9 +34,6 @@ const getRole = () => {
     }
 };
 
-// football-website/src/functions/auth.service.js
-
-// Replaced original getCurrentUser with enhanced version:
 const getCurrentUser = () => {
     try {
         const data = localStorage.getItem("user");
@@ -49,8 +43,6 @@ const getCurrentUser = () => {
         return null;
     }
 };
-
-// …rest of the file without any other getCurrentUser declaration…
 
 const hasAnyRole = (targetRoles) => {
   const user = getCurrentUser();
