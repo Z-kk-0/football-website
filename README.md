@@ -22,6 +22,7 @@
 | Backend Tests                        | 3 std       |      noch nicht begonnen |
 | Test protokoll                      | 5 min      |      noch nicht begonnen |
 | Website Deploybar machen                        | 3 std       |      noch nicht begonnen |
+| Finishing touches für abgabe                    | 3 std       |      noch nicht begonnen |
 | Optionale erweiterungen      | Undefiniert |      noch nicht begonnen |
 ## User Story 1 Registration
 **Als** Benutzer  
