@@ -32,9 +32,22 @@ const getRole = () => {
     return user?.roles?.[0] || user?.role || null;
 };
 
+// football-website/src/functions/auth.service.js
+
+const getCurrentUser = () => {
+  try {
+    const data = localStorage.getItem("user");
+    return data ? JSON.parse(data) : null;
+  } catch (error) {
+    console.error("Error parsing user data from localStorage:", error);
+    return null;
+  }
+};
+
 const hasAnyRole = (targetRoles) => {
   const user = getCurrentUser();
-  const rawRoles = user?.roles || [];
+  if (!user?.roles) return false;
+  const rawRoles = user.roles;
 
   const roles = Array.isArray(rawRoles)
     ? typeof rawRoles[0] === "string"
@@ -42,7 +55,7 @@ const hasAnyRole = (targetRoles) => {
       : rawRoles.map((r) => r.authority)
     : [];
 
-  return targetRoles.some(role => roles.includes(role));
+  return targetRoles.some((role) => roles.includes(role));
 };
 
 const AuthService = {
