@@ -11,6 +11,8 @@ import Logout from './modules/Logout';
 import Register from './modules/Register';
 import NoLogin from './modules/NoLogin';
 import ProtectedRoute from './modules/ProtectedRoute';
+import Playbook from './pages/Playbook';
+import Members from './pages/Members';
 
 function App() {
     return (
@@ -60,6 +62,23 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
+              <Route
+                    path="plays"
+                    element={
+                        <ProtectedRoute>
+                            <Playbook />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="members"
+                    element={
+                        <ProtectedRoute>
+                            <Members />
+                        </ProtectedRoute>
+                    }
+                />
+                
                 <Route path="*" element={<NoPage />} />
             </Route>
         </Routes>
