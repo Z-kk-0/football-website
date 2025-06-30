@@ -416,8 +416,6 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 ![football-website drawio](https://github.com/user-attachments/assets/a628c20c-3ad1-4e24-8203-2902aa1b123a)
 
 # Realisieren
-# Kontrollieren
-# Auswerten
 ## Arbeitsjournal
 ### 19.07.2025
 **Arbeitspakete** Informieren und User Stories abgeschlossen Backend Planung angefangen. Userstories haben länger gebraucht als ich gedacht habe als 4 std waren es realistisch 6 std
@@ -431,5 +429,8 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 **Arbeitspakete** Login / logout erweiterung falls nötig. Ich habe die login logout features vorgezogen, da dass Registrieren ja auch dazu gehört und allgemein einen Angenehmen workflow zu haben. Die weiterleitung und die NoLogin Page war ein bisschen nervig aber sonst keine probleme habe sehr viel weniger zeit gebraucht als 6 std habe ich Realistisch 2 gebraucht deswegen habe ich mich entschieden, für die weiteren Frontend elemente die Zeit zu kürzen.
 ### 30.06.2025
 **Arbeitspakete** Dashboard Impl Frontend und plays impl frontend. Keine probleme hier. Habe auch noch das feature eingebaut mit einem hasRole tool um Permissionchecking einfacher zu machen. Sonst nichts spezielles beides hat zusammen etwa 4 std gebraucht was in rahmen war die 3 std Zeit ist nun sehr gut weil ich so noch eine stunde buffer habe.
+
+# Kontrollieren
+# Auswerten
 
 
