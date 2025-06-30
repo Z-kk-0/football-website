@@ -13,11 +13,15 @@
 | Vervollständigung User Impl backend    | 3 std       |       fertig |
 | Team Impl backend                      | 4 std       |      nicht nötig |
 | Play Impl backend                      | 4 std       |        fertig|
-| Dashboard Impl Frontend                | 6 std       |       noch nicht begonnen |
-| Login / logout erweiterung falls nötig | 6 std       |        noch nicht begonnen|
-| plays impl frontend                    | 6 std       |        noch nicht begonnen|
-| members impl frontend                  | 6 std       |        noch nicht begonnen|
-| Frontend Design                        | 6 std       |      noch nicht begonnen |
+| Dashboard Impl Frontend                | 3 std       |       noch nicht begonnen |
+| Login / logout erweiterung falls nötig | 3 std       |        noch nicht begonnen|
+| plays impl frontend                    | 3 std       |        noch nicht begonnen|
+| members impl frontend                  | 3 std       |        noch nicht begonnen|
+| Testplan                        | 1 std       |      noch nicht begonnen |
+| Frontend Tests                       | 3 std       |      noch nicht begonnen |
+| Backend Tests                        | 3 std       |      noch nicht begonnen |
+| Test protokoll                      | 5 min      |      noch nicht begonnen |
+| Website Deploybar machen                        | 3 std       |      noch nicht begonnen |
 | Optionale erweiterungen      | Undefiniert |      noch nicht begonnen |
 ## User Story 1 Registration
 **Als** Benutzer  
