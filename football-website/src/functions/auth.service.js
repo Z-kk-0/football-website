@@ -28,8 +28,13 @@ const getJwtHeader = () => {
 }
 
 const getRole = () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    return user?.roles?.[0] || user?.role || null;
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        return user?.roles?.[0] || user?.role || null;
+    } catch (error) {
+        console.error("Error parsing user from localStorage:", error);
+        return null;
+    }
 };
 
 // football-website/src/functions/auth.service.js
