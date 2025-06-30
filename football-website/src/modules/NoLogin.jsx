@@ -9,23 +9,11 @@ const NoLogin = () => {
       <div style={{ marginTop: '20px' }}>
         <button
           onClick={() => navigate('/login')}
-          style={{
-            margin: '0 10px',
-            padding: '10px 20px',
-            fontSize: '1rem',
-            cursor: 'pointer'
-          }}
         >
           Login
         </button>
         <button
           onClick={() => navigate('/register')}
-          style={{
-            margin: '0 10px',
-            padding: '10px 20px',
-            fontSize: '1rem',
-            cursor: 'pointer'
-          }}
         >
           Registrieren
         </button>

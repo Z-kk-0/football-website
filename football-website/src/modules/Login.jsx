@@ -1,8 +1,10 @@
 import {useNavigate} from 'react-router-dom';
 import AuthService from '../functions/auth.service';
 import React, {useState} from 'react';
+import {useAuth} from './AuthContext';
 
 export default function Login() {
+    const {login} = useAuth();
     const navigate = useNavigate();
     const [entries, setEntries] = useState({username: "", password: ""})
     function store(e) {
@@ -17,7 +19,8 @@ export default function Login() {
             AuthService.login(entries.username, entries.password)
                 .then((res) => {
                     if (res.username) {
-                    navigate("/");
+                        login(res);
+                        navigate("/");
                     }
                 })
                 .catch((err) => {
