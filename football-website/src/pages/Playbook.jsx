@@ -42,6 +42,7 @@ export default function Playbook() {
                 { content },
                 getJwtHeader()
             );
+            console.log(res);
             setStatus("play erfolgreich erstellt");
             setContent("");
             await getPlays();

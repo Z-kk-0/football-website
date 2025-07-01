@@ -4,7 +4,7 @@ import { useAuth } from "../functions/AuthContext";
 import "../index.css";
 
 export default function Members() {
-    const { getJwtHeader } = useAuth(); // ✅ FIX
+    const { getJwtHeader } = useAuth(); 
 
     const [users, setUsers] = useState([]);
     const [status, setStatus] = useState(null);
@@ -50,7 +50,7 @@ export default function Members() {
                 {users.map((user) => (
                     <li key={user.id}>
                         <div>
-                            <strong>{user.username}</strong> – {user.email}
+                            <strong>{user.username}</strong> -- {user.email}
                             <select
                                 value={user.role}
                                 onChange={(e) => updateUserRole(user.id, e.target.value)}
