@@ -16,7 +16,7 @@
 | Dashboard Impl Frontend                | 3 std       |       fertig |
 | Login / logout erweiterung falls nötig | 3 std       |        fertig|
 | plays impl frontend                    | 3 std       |        fertig|
-| members impl frontend                  | 3 std       |        in progress|
+| members impl frontend                  | 3 std       |        fertig|
 | Testplan                        | 1 std       |      noch nicht begonnen |
 | Frontend Tests                       | 3 std       |      noch nicht begonnen |
 | Backend Tests                        | 3 std       |      noch nicht begonnen |
@@ -429,6 +429,9 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 **Arbeitspakete** Login / logout erweiterung falls nötig. Ich habe die login logout features vorgezogen, da dass Registrieren ja auch dazu gehört und allgemein einen Angenehmen workflow zu haben. Die weiterleitung und die NoLogin Page war ein bisschen nervig aber sonst keine probleme habe sehr viel weniger zeit gebraucht als 6 std habe ich Realistisch 2 gebraucht deswegen habe ich mich entschieden, für die weiteren Frontend elemente die Zeit zu kürzen.
 ### 30.06.2025
 **Arbeitspakete** Dashboard Impl Frontend und plays impl frontend. Keine probleme hier. Habe auch noch das feature eingebaut mit einem hasRole tool um Permissionchecking einfacher zu machen. Sonst nichts spezielles beides hat zusammen etwa 4 std gebraucht was in rahmen war die 3 std Zeit ist nun sehr gut weil ich so noch eine stunde buffer habe.
+
+### 01.07.2025
+**Arbeitspakete** Members Impl Frontend. keine probleme mal wieder war alles im Zeitrahmen. Habe auch noch Authservice zu AuthContext refactored, damit man auto refreshes hat nach dem anmelden sonst funktionierte die gegenseitige weiterleitung von NoLogin und der normalen Homepage nicht. Jetzt kann man auch keine Rollen mehr schicken. Der Erste User ist jetzt Admin der Rest wird zu PLAYERN und der Admin mach den Rest auf der Homepage :).  
 
 # Kontrollieren
 # Auswerten
