@@ -21,7 +21,6 @@ import ch.zkk0.football.model.User;
 import ch.zkk0.football.repository.RoleRepository;
 import ch.zkk0.football.repository.UserRepository;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -41,25 +40,38 @@ public class UserController {
             this.roleName = roleName;
         }
     }
-public static class UserResponse {
-    private int id;
-    private String username;
-    private String email;
-    private String role;
 
-    public UserResponse(int id, String username, String email, String role) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.role = role;
+    public static class UserResponse {
+        private int id;
+        private String username;
+        private String email;
+        private String role;
+
+        public UserResponse(int id, String username, String email, String role) {
+            this.id = id;
+            this.username = username;
+            this.email = email;
+            this.role = role;
+        }
+
+        // Getter (Setter nicht nötig, weil wir nur lesen)
+        public int getId() {
+            return id;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getRole() {
+            return role;
+        }
     }
 
-    // Getter (Setter nicht nötig, weil wir nur lesen)
-    public int getId() { return id; }
-    public String getUsername() { return username; }
-    public String getEmail() { return email; }
-    public String getRole() { return role; }
-}
     @CrossOrigin
     @PutMapping("/{userId}/role")
     public ResponseEntity<?> updateRole(@PathVariable Long userId, @RequestBody RoleUpdateRequest request) {
@@ -83,19 +95,17 @@ public static class UserResponse {
 
     }
 
-@CrossOrigin
-@GetMapping
-public ResponseEntity<List<UserResponse>> getAllUsers() {
-    List<UserResponse> users = userRepository.findAll().stream()
-        .map(u -> new UserResponse(
-                u.getId(),
-                u.getUsername(),
-                u.getEmail(),
-                u.getRole().getName().name() 
-        ))
-        .collect(Collectors.toList());
+    @CrossOrigin
+    @GetMapping
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
+        List<UserResponse> users = userRepository.findAll().stream()
+                .map(u -> new UserResponse(
+                        u.getId(),
+                        u.getUsername(),
+                        u.getEmail(),
+                        u.getRole().getName().name()))
+                .collect(Collectors.toList());
 
-   
-    return ResponseEntity.ok(users);
-}
+        return ResponseEntity.ok(users);
+    }
 }
