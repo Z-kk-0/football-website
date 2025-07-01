@@ -27,7 +27,6 @@ export default function Register() {
         username: form.username,
         email: form.email,
         password: form.password,
-        role: "ROLE_PLAYER"
       });
       navigate("/login");
     } catch (err) {
