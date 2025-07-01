@@ -84,6 +84,16 @@ public class UserController {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Ungültiger Rollenname: " + request.getRoleName());
         }
+
+        if (user.getRole().getName() == ERole.ROLE_ADMIN && eRole != ERole.ROLE_ADMIN) {
+        long adminCount = userRepository.countByRoleName(ERole.ROLE_ADMIN);
+
+        if (adminCount <= 1) {
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN, "Der letzte Admin darf nicht entfernt werden.");
+        }
+    }
+
         Role role = roleRepository.findByName(eRole);
         if (role == null) {
             throw new ResponseStatusException(

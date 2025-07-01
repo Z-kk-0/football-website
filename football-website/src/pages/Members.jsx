@@ -1,19 +1,20 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import AuthService from "../functions/auth.service";
+import { useAuth } from "../functions/AuthContext";
 import "../index.css";
 
-
-
 export default function Members() {
+    const { getJwtHeader } = useAuth(); // ✅ FIX
+
     const [users, setUsers] = useState([]);
     const [status, setStatus] = useState(null);
+    const availableRoles = ["ROLE_ADMIN", "ROLE_COACH", "ROLE_PLAYER"];
 
     const getUsers = async () => {
         try {
             const res = await axios.get(
                 "http://localhost:8080/api/users",
-                AuthService.getJwtHeader()
+                getJwtHeader()
             );
             setUsers(res.data);
         } catch (err) {
@@ -26,26 +27,46 @@ export default function Members() {
         getUsers();
     }, []);
 
+    const updateUserRole = async (userId, newRole) => {
+        try {
+            await axios.put(
+                `http://localhost:8080/api/users/${userId}/role`,
+                { roleName: newRole },
+                getJwtHeader()
+            );
+            setStatus("Rolle aktualisiert");
+            await getUsers();
+        } catch (err) {
+            console.error("Fehler beim Aktualisieren der Rolle", err);
+            setStatus("Fehler beim Aktualisieren der Rolle");
+        }
+    };
+
     return (
         <>
             <h1>Mitglieder</h1>
-            {status && <p>{status}</p>}
             <ul>
                 {users.length === 0 && <li>Keine User vorhanden</li>}
                 {users.map((user) => (
                     <li key={user.id}>
                         <div>
                             <strong>{user.username}</strong> – {user.email}
+                            <select
+                                value={user.role}
+                                onChange={(e) => updateUserRole(user.id, e.target.value)}
+                                className="role-select"
+                            >
+                                {availableRoles.map((role) => (
+                                    <option key={role} value={role}>
+                                        {role.replace("ROLE_", "")}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
-                        {console.log("🧾 ROLES:", user.role)}
-                        <div>
-                            <span className="role-badge">{user.role || "keine Rolle"}</span>                                </span>
-                            ))}
-                    </div>
                     </li>
                 ))}
-        </ul >
+            </ul>
+            {status && <p>{status}</p>}
         </>
     );
 }
-
