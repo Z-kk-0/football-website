@@ -430,6 +430,9 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 ### 30.06.2025
 **Arbeitspakete** Dashboard Impl Frontend und plays impl frontend. Keine probleme hier. Habe auch noch das feature eingebaut mit einem hasRole tool um Permissionchecking einfacher zu machen. Sonst nichts spezielles beides hat zusammen etwa 4 std gebraucht was in rahmen war die 3 std Zeit ist nun sehr gut weil ich so noch eine stunde buffer habe.
 
+### 01.07.2025
+**Arbeitspakete** Members Impl Frontend. keine probleme mal wieder war alles im Zeitrahmen. Habe auch noch Authservice zu AuthContext refactored, damit man auto refreshes hat nach dem anmelden sonst funktionierte die gegenseitige weiterleitung von NoLogin und der normalen Homepage nicht. Jetzt kann man auch keine Rollen mehr schicken. Der Erste User ist jetzt Admin der Rest wird zu PLAYERN und der Admin mach den Rest auf der Homepage :).  
+
 # Kontrollieren
 # Auswerten
 
