@@ -7,7 +7,7 @@ nav ul {
 
 nav ul li {
   list-style: none;
-  border: 2px solid var(--color-secondary); /* Navy-Blau */
+  border: 2px solid var(--color-secondary);
   border-radius: 6px;
   margin: 2px;
   transition: background-color 0.2s ease;
@@ -24,7 +24,7 @@ nav ul li a {
 }
 
 nav ul li:hover {
-  background-color: var(--color-secondary); /* Fill */
+  background-color: var(--color-secondary);
 }
 
 nav ul li:hover a {

@@ -52,12 +52,15 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    private static final String[] EVERYONE = { "/public", "/api/auth/**"};
+    private static final String[] EVERYONE = { "/public", "/api/auth/**" };
 
     /**
      * Configures and returns the application's HTTP security filter chain.
      *
-     * Sets up stateless JWT-based authentication, custom unauthorized handling, and role-based access control for various endpoints. Disables CSRF protection, enables CORS, and defines authorization rules for public, authenticated, and admin-only routes.
+     * Sets up stateless JWT-based authentication, custom unauthorized handling, and
+     * role-based access control for various endpoints. Disables CSRF protection,
+     * enables CORS, and defines authorization rules for public, authenticated, and
+     * admin-only routes.
      *
      * @param http the HttpSecurity to configure
      * @return the configured SecurityFilterChain
@@ -71,27 +74,25 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(EVERYONE).permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/users/*/role").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/users").authenticated()
-                        .requestMatchers("/private").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/plays").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/plays").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/api/plays/*").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/plays/*").hasRole("ADMIN"));
+                        .requestMatchers("/api/plays/**").hasAnyRole("ADMIN", "COACH"));
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationJwtTokenFilter(),
                 UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
-        @Override
+            @Override
             public void addCorsMappings(CorsRegistry registry) {
-            registry.addMapping("/**")
-            .allowedOriginPatterns("http://localhost:5173")
-            .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-            .allowedHeaders("Authorization", "Content-Type")
-            .allowCredentials(true);
+                registry.addMapping("/**")
+                        .allowedOriginPatterns("http://localhost:5173")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("Authorization", "Content-Type")
+                        .allowCredentials(true);
             }
         };
     }
