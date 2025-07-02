@@ -16,8 +16,8 @@
 | Dashboard Impl Frontend                | 3 std       |       fertig |
 | Login / logout erweiterung falls nötig | 3 std       |        fertig|
 | plays impl frontend                    | 3 std       |        fertig|
-| members impl frontend                  | 3 std       |        in progress|
-| Testplan                        | 1 std       |      noch nicht begonnen |
+| members impl frontend                  | 3 std       |        fertig|
+| Testplan                        | 1 std       |      in progress |
 | Frontend Tests                       | 3 std       |      noch nicht begonnen |
 | Backend Tests                        | 3 std       |      noch nicht begonnen |
 | Test protokoll                      | 5 min      |      noch nicht begonnen |
