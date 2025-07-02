@@ -70,21 +70,36 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest request) {
-        if (userRepository.existsByUsername(request.getUsername())) {
-            return ResponseEntity.badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
-        }
-        if (userRepository.existsByEmail(request.getEmail())) {
-            return ResponseEntity.badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
-        }
-        User user = new User(request.getUsername(), request.getEmail(), encoder.encode(request.getPassword()));
-        Role role = roleRepository.findByName(ERole.valueOf(request.getRole()));
-        user.setRole(role);
-        userRepository.save(user);
-
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+@PostMapping("/signup")
+public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest request) {
+    if (userRepository.existsByUsername(request.getUsername())) {
+        return ResponseEntity.badRequest()
+                .body(new MessageResponse("Error: Username is already taken!"));
     }
+    if (userRepository.existsByEmail(request.getEmail())) {
+        return ResponseEntity.badRequest()
+                .body(new MessageResponse("Error: Email is already in use!"));
+    }
+
+    User user = new User(
+        request.getUsername(),
+        request.getEmail(),
+        encoder.encode(request.getPassword())
+    );
+
+    ERole assignedRole = userRepository.count() == 0 ? ERole.ROLE_ADMIN : ERole.ROLE_PLAYER;
+    Role role = roleRepository.findByName(assignedRole);
+
+    if (role == null) {
+        return ResponseEntity
+                .internalServerError()
+                .body(new MessageResponse("Error: Rolle nicht gefunden"));
+    }
+
+    user.setRole(role);
+    userRepository.save(user);
+
+    return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+}
+
 }

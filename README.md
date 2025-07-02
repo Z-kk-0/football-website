@@ -17,7 +17,7 @@
 | Login / logout erweiterung falls nötig | 3 std       |        fertig|
 | plays impl frontend                    | 3 std       |        fertig|
 | members impl frontend                  | 3 std       |        fertig|
-| Testplan                        | 1 std       |      noch nicht begonnen |
+| Testplan                        | 1 std       |      in progress |
 | Frontend Tests                       | 3 std       |      noch nicht begonnen |
 | Backend Tests                        | 3 std       |      noch nicht begonnen |
 | Test protokoll                      | 5 min      |      noch nicht begonnen |
