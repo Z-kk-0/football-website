@@ -20,7 +20,7 @@
 | Testplan                        | 1 std       |      in progress |
 | Frontend Tests                       | 3 std       |      noch nicht begonnen |
 | Backend Tests                        | 3 std       |      noch nicht begonnen |
-| Test protokoll                      | 5 min      |      noch nicht begonnen |
+| Test protokoll                      |  1 std      |      noch nicht begonnen |
 | Website Deploybar machen                        | 3 std       |      noch nicht begonnen |
 | Finishing touches für abgabe                    | 3 std       |      noch nicht begonnen |
 | Optionale erweiterungen      | Undefiniert |      noch nicht begonnen |
