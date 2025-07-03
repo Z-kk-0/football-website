@@ -388,7 +388,7 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 /team         → TeamDashboardPage
 /team/plays/ → ReadOnlyPlayView
 /team/members/ → Team Member View Admin only
-/notlogin → nicht eingeloggte User sind hier
+/nologin → nicht eingeloggte User sind hier
 ```
 
 ###  API-Integration
@@ -408,12 +408,57 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
   * `getPlays()`, `createPlay(content)`, `updatePlay(playId, content)`, `deletePlay(playId)`
 
 
-###  Testing
-
-* **Unit Tests**: Jest + React Testing Library für wichtige Komponenten (Auth, MemberList, PlayEditor)
-
 ### Wireframe
 ![football-website drawio](https://github.com/user-attachments/assets/a628c20c-3ad1-4e24-8203-2902aa1b123a)
+
+## Testplan für das "football-website" Projekt
+
+### Testgegenstand
+
+* **Frontend**: React-Komponenten, Routen, UI-Elemente
+* **Backend**: REST-APIs mit Spring Security & JWT 
+* **Sicherheit**: Authentifizierung, Autorisierung, Token-Handling
+
+### Testziele
+
+* Funktionale Korrektheit aller User Stories
+* Sicherheit der Auth-/Autho-Mechanismen
+
+### Testmethoden und -arten
+
+| Typ               | Beschreibung                                  | Tools                    |
+| ----------------- | --------------------------------------------- | ------------------------ |
+| Unit Tests        | Logik in Backend-Services & React-Komponenten | JUnit, Jest              |
+| Integrationstests | API-Endpunkte + DB-Interaktionen              | Spring Test, RestAssured |
+| Security-Tests    | JWT-Expiry, Role-Based Access                 | Insomnia                 |
+
+### Testumgebung
+
+* **Frontend**: Node.js, npm, Browser (Firefox)
+* **Backend**: Java 17, Maven, H2/MySQL
+* **Tools**: VS Code, Docker, CI/CD-Pipeline (GitHub Actions)
+
+### Testumfang & Ausschluss
+
+* **Im Scope**: Alle User Stories ausser Multi-Team Funktionalitäten (User Management, Plays, Dashboard, Login, Logout, KEINE User Invites, KEINE TEAM ROLLEN, NUR eine Rolle pro Member)
+
+### Testfälle
+| ID | Testfall                                                           | Schritte                                                                                                             | Erwartetes Ergebnis                                                                   | Typ             |
+| -- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | --------------- |
+| 1  | Nutzer-Registrierung erfolgreich                                   | 1. Registrierung mit gültigen Daten  2. API-Aufruf                                                                   | HTTP 201 + Token im Response-Body                                                     | Integration     |
+| 2  | Login mit falschem Passwort                                        | 1. Login-Request mit falschem Passwort                                                                               | wird abgelehnt                                                              | Integration     |
+| 3  | Zugriff auf geschützte Ressource ohne Token                        | GET /plays ohne Auth-Header                                                                                          | wird abgelehnt                                                                   | Security        |
+| 4  | Playbook lädt Plays korrekt                                        | 1. Login  2. GET /plays                                                                                              | JSON mit Play-Liste, UI aktualisiert                                                  | End-to-End      |
+| 5  | Fehlerhaftes Passwort bestätigt                                    | 1. /Register  2. Formular mit ungültigen Passwörtern einreichen                                                      | Formular wird nicht abgeschickt                                                       | Integration     |
+| 6  | Logout-Funktionalität                                              | 1. Login  2. /logout                                                                                                 | Weiterleitung zu /nologin und JWT Token nicht mehr im Storage                         | Integration     |
+| 7  | Rollen-Assignment auf einzelne Rolle beschränkt                    | 1. POST /roles mit zwei Rollen im Request                                                                            | wird abgelehnt                              | Integration     |
+| 8  | JWT-Expiry korrekt gehandhabt                                      | 1. Login  2. Warten bis Token abläuft  3. GET /dashboard                                                             | wird abgelehnt                                                  | Security        |
+| 9  | ProtectedRoute Component leitet nicht-authentifizierte User weiter | Rendern von `<ProtectedRoute>` ohne `user` in AuthContext                                                            | Rendert `<Navigate to="/nologin" replace />`                                          | Unit (Frontend) |
+| 10 | Navigation Component zeigt Links je nach Auth-Zustand an           | Rendern von `<Navigation />` mit und ohne Mock-User im AuthContext                                                   | Bei `user = null`: Login/Register-Links; bei vorhandenem `user`: Members/Logout-Links | Unit (Frontend) |
+| 11 | `JwtUtils.validateToken()` validiert Token korrekt                 | 1. Erzeugen eines Test-JWT via `generateJwtToken`  2. Aufruf von `validateToken` mit gültigem und abgelaufenem Token | `true` für nicht abgelaufenen Token, `false` für abgelaufenen Token                   | Unit (Backend)  |
+| 12 | `UserDetailsServiceImpl.loadUserByUsername()` lädt UserDetails     | Aufruf von `loadUserByUsername("existierenderUser")` mit mock UserRepository                                         | Gibt `UserDetails` mit korrektem Username und Authorities zurück                      | Unit (Backend)  |
+
+
 
 # Realisieren
 ## Arbeitsjournal
