@@ -20,7 +20,7 @@
 | Testplan                        | 1 std       |      in progress |
 | Frontend Tests                       | 3 std       |      noch nicht begonnen |
 | Backend Tests                        | 3 std       |      noch nicht begonnen |
-| Test protokoll                      | 5 min      |      noch nicht begonnen |
+| Test protokoll                      |  1 std      |      noch nicht begonnen |
 | Website Deploybar machen                        | 3 std       |      noch nicht begonnen |
 | Finishing touches für abgabe                    | 3 std       |      noch nicht begonnen |
 | Optionale erweiterungen      | Undefiniert |      noch nicht begonnen |
@@ -388,7 +388,7 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 /team         → TeamDashboardPage
 /team/plays/ → ReadOnlyPlayView
 /team/members/ → Team Member View Admin only
-/notlogin → nicht eingeloggte User sind hier
+/nologin → nicht eingeloggte User sind hier
 ```
 
 ###  API-Integration
@@ -408,12 +408,55 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
   * `getPlays()`, `createPlay(content)`, `updatePlay(playId, content)`, `deletePlay(playId)`
 
 
-###  Testing
-
-* **Unit Tests**: Jest + React Testing Library für wichtige Komponenten (Auth, MemberList, PlayEditor)
-
 ### Wireframe
 ![football-website drawio](https://github.com/user-attachments/assets/a628c20c-3ad1-4e24-8203-2902aa1b123a)
+
+## Testplan für das "football-website" Projekt
+
+### Testgegenstand
+
+* **Frontend**: React-Komponenten, Routen, UI-Elemente
+* **Backend**: REST-APIs mit Spring Security & JWT 
+* **Sicherheit**: Authentifizierung, Autorisierung, Token-Handling
+
+### Testziele
+
+* Funktionale Korrektheit aller User Stories
+* Sicherheit der Auth-/Autho-Mechanismen
+
+### Testmethoden und -arten
+
+| Typ               | Beschreibung                                  | Tools                    |
+| ----------------- | --------------------------------------------- | ------------------------ |
+| Unit Tests        | Logik in Backend-Services & React-Komponenten | JUnit, Jest              |
+| Integrationstests | API-Endpunkte + DB-Interaktionen              | Spring Test, RestAssured |
+| Security-Tests    | JWT-Expiry, Role-Based Access                 | Insomnia                 |
+
+### Testumgebung
+
+* **Frontend**: Node.js, npm, Browser (Firefox)
+* **Backend**: Java 17, Maven, H2/MySQL
+* **Tools**: VS Code, Docker, CI/CD-Pipeline (GitHub Actions)
+
+### Testumfang & Ausschluss
+
+* **Im Scope**: Alle User Stories ausser Multi-Team Funktionalitäten (User Management, Plays, Dashboard, Login, Logout, KEINE User Invites, KEINE TEAM ROLLEN, NUR eine Rolle pro Member)
+
+### Testfälle
+| ID | Testfall                                                           | Schritte                                                                                                                                                                                                                                                                                                                                                                                                                                    | Erwartetes Ergebnis                                                                                                                               | Typ             |
+| -- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| 1  | Nutzer-Registrierung erfolgreich                                   | 1. Registrierung mit gültigen Daten  2. API-Aufruf                                                                                                                                                                                                                                                                                                                                                                                          | HTTP 201 + Token im Response-Body                                                                                                                 | Integration     |
+| 2  | Login mit falschem Passwort                                        | 1. Login-Request mit falschem Passwort                                                                                                                                                                                                                                                                                                                                                                                                      | HTTP 401 + Fehlermeldung                                                                                                                          | Integration     |
+| 3  | Zugriff auf geschützte Ressource ohne Token                        | GET /plays ohne Auth-Header                                                                                                                                                                                                                                                                                                                                                                                                                 | HTTP 401 Forbidden                                                                                                                                | Security        |
+| 4  | Playbook lädt Plays korrekt                                        | 1. Login  2. GET /plays                                                                                                                                                                                                                                                                                                                                                                                                                     | JSON mit Play-Liste, UI aktualisiert                                                                                                              | End-to-End      |
+| 5  | Fehlerhaftes Passwort bestätigt                                    | 1. /Register  2. Formular mit ungültigen Passwörtern einreichen                                                                                                                                                                                                                                                                                                                                                                             | Formular wird nicht abgeschickt                                                                                                                   | Integration     |
+| 6  | Logout-Funktionalität                                              | 1. Login  2. /logout                                                                                                                                                                                                                                                                                                                                                                                                                        | Weiterleitung zu /nologin und JWT-Token nicht mehr im Storage                                                                                     | Integration     |
+| 7  | Rollen-Assignment auf einzelne Rolle beschränkt                    | 1. POST /roles mit zwei Rollen im Request                                                                                                                                                                                                                                                                                                                                                                                                   | HTTP 400 + Fehlermeldung (Maximal eine Rolle pro Member)                                                                                          | Integration     |
+| 8  | JWT-Expiry korrekt gehandhabt                                      | 1. Login  2. Warten bis Token abläuft  3. GET /dashboard                                                                                                                                                                                                                                                                                                                                                                                    | HTTP 401 + Token abgelaufen Meldung                                                                                                               | Security        |
+| 9  | ProtectedRoute Component leitet nicht-authentifizierte User weiter | Rendern von `<ProtectedRoute>` ohne `user` in AuthContext                                                                                                                                                                                                                                                                                                                                                                                   | Rendert `<Navigate to="/nologin" replace />`                                                                                                      | Unit (Frontend) |
+| 10 | Home-Komponente zeigt Navigation und nutzt `navigate`              | 1. Mocke `useAuth()` so, dass `hasAnyRole(["ROLE_ADMIN"])` zuerst `false`, dann `true` zurückgibt<br>2. Mocke `useNavigate()` mit Jest-Spy<br>3. Render `<Home />` und prüfe, dass nur der Playbook-Button angezeigt wird<br>4. Re-render mit `hasAnyRole=true` und prüfe, dass zusätzlich der Mitglieder-Button erscheint<br>5. Klicke auf beide Buttons und verifiziere, dass `navigate` mit `"/plays"` bzw. `"/members"` aufgerufen wird | Home rendert Überschrift und Buttons korrekt, zeigt Mitglieder-Button nur für Admins, und ruft beim Klick `navigate` mit den richtigen Routen auf | Unit (Frontend) |
+| 11 | `createPlay()` als Unit-Test mit gemocktem Repository              | 1. Mock: `playRepository.save(request)`  2. Aufruf von `playController.createPlay(request)`                                                                                                                                                                                                                                                                                                                                                 | `ResponseEntity` mit Status 201 und dem vom Mock zurückgegebenen Play                                                                             | Unit (Backend)  |
+| 12 | `getAllPlays()` als Unit-Test mit gemocktem Repository             | 1. Mock: `playRepository.findAll()` → Liste von Plays  2. Aufruf von `playController.getAllPlays()`                                                                                                                                                                                                                                                                                                                                         | `ResponseEntity` mit Status 200 und dem Mock-Play-List-Array                                                                                      | Unit (Backend)  |
 
 # Realisieren
 ## Arbeitsjournal
