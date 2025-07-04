@@ -3,6 +3,16 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../functions/AuthContext";
 import "../Modal.css";
 
+/**
+ * Playbook page component for managing football plays.
+ *
+ * - Fetches, creates, updates, and deletes plays from the backend API.
+ * - Only users with ROLE_ADMIN or ROLE_COACH can create, edit, or delete plays.
+ * - Uses a modal for editing plays.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered Playbook page.
+ */
 export default function Playbook() {
     const { getJwtHeader, hasAnyRole } = useAuth(); 
 

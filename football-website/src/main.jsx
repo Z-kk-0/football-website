@@ -1,3 +1,10 @@
+/**
+ * Entry point for the React application.
+ *
+ * - Renders the App component inside AuthProvider and BrowserRouter.
+ * - Mounts the app to the #root element in the DOM.
+ */
+
 import './index.css'
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";

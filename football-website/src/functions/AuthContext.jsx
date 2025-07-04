@@ -1,3 +1,12 @@
+/**
+ * AuthContext provides authentication state and helpers for the app.
+ *
+ * - Stores user info and JWT in localStorage.
+ * - Provides login, logout, and role-checking utilities.
+ * - Used via useAuth() hook throughout the app.
+ *
+ * @context
+ */
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 

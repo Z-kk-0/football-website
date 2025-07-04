@@ -11,6 +11,17 @@ import ProtectedRoute from './modules/ProtectedRoute';
 import Playbook from './pages/Playbook';
 import Members from './pages/Members';
 
+/**
+ * Main application component that sets up all routes and layout.
+ *
+ * - Uses React Router for navigation.
+ * - Wraps protected routes with <ProtectedRoute>.
+ * - Provides routes for login, registration, playbook, members, and error pages.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered app with all routes.
+ */
+
 function App() {
     return (
         <Routes>

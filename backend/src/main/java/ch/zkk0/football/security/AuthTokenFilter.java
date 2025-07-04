@@ -18,13 +18,28 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * JWT authentication token filter for processing requests.
+ */
 public class AuthTokenFilter extends OncePerRequestFilter {
+    /**
+     * Utility for JWT operations.
+     */
     @Autowired
     private JwtUtils jwtUtils;
+    /**
+     * Service for loading user details.
+     */
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
+    /**
+     * Logger for authentication events and errors.
+     */
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
+    /**
+     * Filters incoming requests and sets authentication if a valid JWT is found.
+     */
     @Override
     protected void doFilterInternal(@SuppressWarnings({ "null" }) HttpServletRequest request,
             @SuppressWarnings("null") HttpServletResponse response,
@@ -46,6 +61,11 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+    /**
+     * Parses the JWT from the Authorization header.
+     * @param request the HTTP request
+     * @return the JWT token, or null if not found
+     */
     private String parseJwt(HttpServletRequest request) {
         String headerAuth = request.getHeader("Authorization");
         logger.debug("Auth-Header: {}", headerAuth);

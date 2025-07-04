@@ -2,6 +2,15 @@ import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { useAuth } from "../functions/AuthContext";
 
+/**
+ * Home page component for the Playbook website.
+ *
+ * - Shows navigation to members (for admins) and playbook.
+ * - Uses useAuth to check user roles.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered home page.
+ */
 export default function Home() {
   const [canSeeMembers, setCanSeeMembers] = useState(false);
   const { hasAnyRole } = useAuth(); // ✅ Hook korrekt aufgerufen
