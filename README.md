@@ -1,6 +1,12 @@
 # football-website
 ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Z-kk-0/football-website?utm_source=oss&utm_medium=github&utm_campaign=Z-kk-0%2Ffootball-website&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 # Informieren
+## Projektvision
+Ziel dieses Projekts ist es, eine multiuser-fähige Web-App zu entwickeln React im Frontend, Java + MySQL im Backend. Passend zu meinen Interessen habe ich mich für einen Playbook-Manager entschieden, den mehrere Nutzer gleichzeitig verwenden können.
+
+## Bewertungsraster
+Folgendes Bewertungsraster wird angewendet
+![](assets/2025-07-04-18-07-03.png)
 
 # Planen
 ## Arbeitsplan
@@ -391,22 +397,6 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 /nologin → nicht eingeloggte User sind hier
 ```
 
-###  API-Integration
-
-* **Service-Ordner**:
-
-  * `services/auth.js` (login, register)
-  * `services/team.js` (getTeamDetails, updateRole,)
-  * `services/play.js` (getPlays, createPlay, updatePlay, deletePlay)
-
-* **Funktionen**:
-
-  * `login(credentials)`, `register(data)`
-
-  * `getMembers()`, `updateRole(userId, roles)`
-
-  * `getPlays()`, `createPlay(content)`, `updatePlay(playId, content)`, `deletePlay(playId)`
-
 
 ### Wireframe
 ![football-website drawio](https://github.com/user-attachments/assets/a628c20c-3ad1-4e24-8203-2902aa1b123a)
@@ -429,13 +419,13 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 | Typ               | Beschreibung                                  | Tools                    |
 | ----------------- | --------------------------------------------- | ------------------------ |
 | Unit Tests        | Logik in Backend-Services & React-Komponenten | JUnit, Jest              |
-| Integrationstests | API-Endpunkte + DB-Interaktionen              | Spring Test, RestAssured |
-| Security-Tests    | JWT-Expiry, Role-Based Access                 | Insomnia                 |
+| Integrationstests | API-Endpunkte + DB-Interaktionen              | Spring Test |
+| Security-Tests    |  Role-Based Access                 | Insomnia                 |
 
 ### Testumgebung
 
 * **Frontend**: Node.js, npm, Browser (Firefox)
-* **Backend**: Java 17, Maven, H2/MySQL
+* **Backend**: Java, Maven, H2/MySQL
 * **Tools**: VS Code, Docker, CI/CD-Pipeline (GitHub Actions)
 
 ### Testumfang & Ausschluss
@@ -473,7 +463,10 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 **Arbeitspakete** Dashboard Impl Frontend und plays impl frontend. Keine probleme hier. Habe auch noch das feature eingebaut mit einem hasRole tool um Permissionchecking einfacher zu machen. Sonst nichts spezielles beides hat zusammen etwa 4 std gebraucht was in rahmen war die 3 std Zeit ist nun sehr gut weil ich so noch eine stunde buffer habe.
 
 ### 01.07.2025
-**Arbeitspakete** Members Impl Frontend. keine probleme mal wieder war alles im Zeitrahmen. Habe auch noch Authservice zu AuthContext refactored, damit man auto refreshes hat nach dem anmelden sonst funktionierte die gegenseitige weiterleitung von NoLogin und der normalen Homepage nicht. Jetzt kann man auch keine Rollen mehr schicken. Der Erste User ist jetzt Admin der Rest wird zu PLAYERN und der Admin mach den Rest auf der Homepage :).  
+**Arbeitspakete** Members Impl Frontend. keine probleme mal wieder war alles im Zeitrahmen. Habe auch noch Authservice zu AuthContext refactored, damit man auto refreshes hat nach dem anmelden sonst funktionierte die gegenseitige weiterleitung von NoLogin und der normalen Homepage nicht. Jetzt kann man auch keine Rollen mehr schicken. Der Erste User ist jetzt Admin der Rest wird zu PLAYERN und der Admin mach den Rest auf der Homepage :). 
+
+### 03.07.2025
+**Arbeitspakete** Testplan, Frontend Tests und Backend tests. Hier hatte ich wenig probleme mit den Tests selbst. Jedoch war die aufsetzun von JEST sehr anstrengend. Sonst keine Probleme. Somit ist die Realisierung des Projekts fertig.
 
 # Kontrollieren
 ## Testprotokoll
@@ -492,5 +485,31 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 | 11     | Max            | Hasselwander    | `ResponseEntity` mit Status 200 und dem Mock-Play-List-Array                                                                                      | `ResponseEntity` mit Status 200 und dem Mock-Play-List-Array                                                                                      | 04.07.2025 | ✔              |
 
 # Auswerten
+## Soll-Ist Vergleich
+| Soll                                                       | Ist                                                            | Kommentar                                                                                                                                                                                                                                                                                                                     |
+| ---------------------------------------------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Multi-Team                                                 | Single-Team                                                    | Nach weiterer Überlegung und Zeitdruck  bin ich auf Single User umgestiegen.<br>Es Ergibt auch mehr sinn für das Projekt an sich, da sich Multi-Team erst dann lohnt wenn man auch<br>Soziale Interaktionen zwischen Teams hat oder ein Spieler in Mehreren Teams ist. So het Theoretisch jedes Team seinen eigenen<br>Server |
+| Beim löschen von Plays Bestätigungs Dialog                 | Kein Bestätigungs Dialog                                       | Da der Play nur ein String ist kann man ihn einfach wieder erstellen.<br>Wäre etwas für zukünftigere verfeinerungen                                                                                                                                                                                                           |
+| Einladungen                                                | Keine Einladungen                                              | Ohne Multi User sehe ich keine begründung dazu aber ergibt auch<br>in einer Single-Team Welt sinn weil man ja nicht will, dass jeder die Plays sieht.                                                                                                                                                                         |
+| Teams verlassen und Mitglieder entfernen                   | Teams kann man nicht verlassen und Mitglieder nicht entfernbar | ist ohne Multi-Team nicht nötig                                                                                                                                                                                                                                                                                               |
+| MemberList, PlayList, PlayEditorModal Frontend Komponenten | alles in Playbook.jsx oder Members.jsx.                        | Code war schon minimal. Für erweiterungen wäre es gut, diese zu<br>separieren                                                                                                                                                                                                                                                 |
+| Play Service                                               | nicht vorhanden                                                | nicht nötig                                                                                                                                                                                                                                                                                                                   |
 
 
+## Problemanalyse
+| Problem                                                                               | Wie tritt es auf              | Lösungsvorschlag                                                                                    |
+| ------------------------------------------------------------------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------- |
+| JWT Expired und man wird nicht ausgeloggt                                             | JWT token expired nach zeit   | vor jeder backend request JWT Token checken                                                         |
+| HTTP fehlermeldungen geben immer 401 Unauthorized raus                                | schlechte Request auf backend | Message Response Anpassen vielleicht etwas in der Security Config                                   |
+| Logout wird angezeigt wenn nicht eingeloggt und login registirierung wenn eingelogged | /                             | Protected Routes nur rendern wenn eingeloggt und nicht login registrieren nur wenn nicht eingeloggt |
+
+## Ideen für Zukünftige Features
+- Multi Team Funktion
+- Besseres Errorhandling
+- User Profiles
+- Playdetails
+- in App Play Editor 
+- UI Verbesserungen
+
+## Fazit
+Ich musste zwar viele meiner ursprünglichen Ideen streichen und zur Vereinfachung auf ein Single-Team-Setup umsteigen, aber die App läuft und das war meine Top-Priorität. Das Error-Handling ist allerdings noch schwach und bleibt ein großer Verbesserungs­punkt für zukünftige Projekte. Ausserdem fällt es mir leichter, ein Projekt von Grund auf neu zu programmieren, als es auf einer bestehenden Basis aufzubauen. Trotzdem bin ich insgesamt zufrieden mit der App.
