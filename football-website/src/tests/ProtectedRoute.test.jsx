@@ -1,4 +1,3 @@
-const { JSDOM } = require("jsdom");
 import { cleanup, render, screen } from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from '../modules/ProtectedRoute';
