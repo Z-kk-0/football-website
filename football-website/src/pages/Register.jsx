@@ -2,6 +2,16 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Register page component for new user registration.
+ *
+ * - Provides a registration form for username, email, and password.
+ * - Handles form validation and error display.
+ * - Submits registration data to the backend API.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered registration form.
+ */
 export default function Register() {
   const [form, setForm] = useState({
     username: "",

@@ -3,6 +3,17 @@ import axios from "axios";
 import { useAuth } from "../functions/AuthContext";
 import "../index.css";
 
+/**
+ * Members page component for managing user roles.
+ *
+ * - Fetches and displays all users.
+ * - Allows updating user roles (admin, coach, player) via dropdown.
+ * - Only accessible to authorized users.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered members management page.
+ */
+
 export default function Members() {
     const { getJwtHeader } = useAuth(); 
 

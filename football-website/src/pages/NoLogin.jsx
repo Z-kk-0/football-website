@@ -1,5 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * NoLogin page component for unauthenticated access.
+ *
+ * - Prompts the user to log in or register.
+ * - Provides navigation buttons to login and registration pages.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered no-login prompt.
+ */
 const NoLogin = () => {
   const navigate = useNavigate();
 

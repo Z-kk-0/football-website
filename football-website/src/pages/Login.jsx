@@ -2,6 +2,16 @@ import {useNavigate} from 'react-router-dom';
 import React, {useState} from 'react';
 import {useAuth} from '../functions/AuthContext';
 
+/**
+ * Login page component for user authentication.
+ *
+ * - Provides a login form for username and password.
+ * - Uses useAuth to perform login and handle errors.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered login form.
+ */
+
 export default function Login() {
     const { login } = useAuth();
     const navigate = useNavigate();
