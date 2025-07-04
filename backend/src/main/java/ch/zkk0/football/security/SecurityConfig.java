@@ -21,19 +21,38 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import ch.zkk0.football.service.UserDetailsServiceImpl;
 
+/**
+ * Security configuration for the application.
+ *
+ * Configures authentication, authorization, password encoding, and security filters.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    /**
+     * Service for loading user details.
+     */
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
+    /**
+     * Handler for unauthorized access attempts.
+     */
     @Autowired
     private AuthenticationEntryPoint unauthorizedHandler;
 
+    /**
+     * Provides the JWT authentication token filter bean.
+     * @return AuthTokenFilter bean
+     */
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();
     }
 
+    /**
+     * Provides the authentication provider bean.
+     * @return DaoAuthenticationProvider bean
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -42,11 +61,21 @@ public class SecurityConfig {
         return authProvider;
     }
 
+    /**
+     * Provides the authentication manager bean.
+     * @param authConfig the authentication configuration
+     * @return AuthenticationManager bean
+     * @throws Exception if an error occurs
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
 
+    /**
+     * Provides the password encoder bean.
+     * @return PasswordEncoder bean
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

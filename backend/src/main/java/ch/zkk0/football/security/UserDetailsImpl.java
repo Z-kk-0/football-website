@@ -12,15 +12,41 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.zkk0.football.model.User;
 
+/**
+ * Implementation of Spring Security's UserDetails for application users.
+ */
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
+    /**
+     * The user's unique identifier.
+     */
     private Long id;
+    /**
+     * The username of the user.
+     */
     private String username;
+    /**
+     * The email address of the user.
+     */
     private String email;
+    /**
+     * The hashed password of the user (ignored in JSON output).
+     */
     @JsonIgnore
     private String password;
+    /**
+     * The authorities granted to the user.
+     */
     private Collection<? extends GrantedAuthority> authorities;
 
+    /**
+     * Constructs a UserDetailsImpl instance.
+     * @param id user ID
+     * @param username username
+     * @param email email address
+     * @param password hashed password
+     * @param authorities granted authorities
+     */
     public UserDetailsImpl(Long id, String username, String email, String password,
             Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
@@ -30,6 +56,11 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = authorities;
     }
 
+    /**
+     * Builds a UserDetailsImpl from a User entity.
+     * @param user the User entity
+     * @return UserDetailsImpl instance
+     */
     public static UserDetailsImpl build(User user) {
         GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().getName().name());
 
@@ -44,15 +75,24 @@ public class UserDetailsImpl implements UserDetails {
                 authorities);
     }
 
+    /**
+     * Returns the authorities granted to the user.
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
 
+    /**
+     * Returns the user's unique identifier.
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Returns the user's email address.
+     */
     public String getEmail() {
         return email;
     }

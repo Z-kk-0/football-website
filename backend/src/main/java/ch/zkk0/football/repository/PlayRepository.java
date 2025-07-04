@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import ch.zkk0.football.model.Play;
 
+/**
+ * Repository interface for play entities.
+ */
 @Repository
 public interface PlayRepository extends JpaRepository<Play, Long> {
 }
