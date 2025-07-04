@@ -23,13 +23,13 @@ Folgendes Bewertungsraster wird angewendet
 | Login / logout erweiterung falls nötig | 3 std       |        fertig|
 | plays impl frontend                    | 3 std       |        fertig|
 | members impl frontend                  | 3 std       |        fertig|
-| Testplan                        | 1 std       |      in progress |
-| Frontend Tests                       | 3 std       |      noch nicht begonnen |
-| Backend Tests                        | 3 std       |      noch nicht begonnen |
-| Test protokoll                      |  1 std      |      noch nicht begonnen |
-| Website Deploybar machen                        | 3 std       |      noch nicht begonnen |
-| Finishing touches für abgabe                    | 3 std       |      noch nicht begonnen |
-| Optionale erweiterungen      | Undefiniert |      noch nicht begonnen |
+| Testplan                        | 1 std       |      fertig|
+| Frontend Tests                       | 3 std       |     fertig |
+| Backend Tests                        | 3 std       |      fertig |
+| Test protokoll                      |  1 std      |      fertig |
+| Website Deploybar machen                        | 3 std       |      in progress |
+| Finishing touches für abgabe                    | 3 std       |      in progress |
+| Optionale erweiterungen      | Undefiniert |      -  |
 ## User Story 1 Registration
 **Als** Benutzer  
 **möchte ich** mich registrieren und Rollen wie Coach oder Spieler annehmen können  
