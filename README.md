@@ -401,7 +401,7 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 ### Wireframe
 ![football-website drawio](https://github.com/user-attachments/assets/a628c20c-3ad1-4e24-8203-2902aa1b123a)
 
-## Testplan für das "football-website" Projekt
+## Testplan
 
 ### Testgegenstand
 
