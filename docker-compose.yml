@@ -1,18 +1,46 @@
-
 services:
-  mysql:
+  db:
     image: mysql:8.0
-    container_name: m223_ifz2326
+    restart: always
     environment:
-      MYSQL_USER: demo
-      MYSQL_PASSWORD: demo
       MYSQL_DATABASE: demo
+      MYSQL_USER: ${SPRING_DATASOURCE_USERNAME}
+      MYSQL_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       MYSQL_ROOT_PASSWORD: root
-    ports:
-      - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
-    restart: unless-stopped
+      - db_data:/var/lib/mysql
+    ports:
+      - '3306:3306'
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - '8080:8080'
+
+  frontend:
+    build:
+      context: ./football-website
+    environment:
+      VITE_API_URL: ${VITE_API_URL}
+    depends_on:
+      - backend
+    ports:
+      - '5173:80'
 
 volumes:
-  mysql_data:
+  db_data:

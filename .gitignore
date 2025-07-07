@@ -1,1 +1,27 @@
 .vim/
+# Node/Frontend
+football-website/node_modules/
+football-website/dist/
+football-website/.env
+football-website/npm-debug.log
+football-website/coverage/
+football-website/.DS_Store
+football-website/.vscode/
+
+# Java/Backend
+backend/target/
+backend/.idea/
+backend/*.iml
+backend/*.log
+backend/*.tmp
+backend/.DS_Store
+backend/.vscode/
+backend/.env
+backend/mvnw
+backend/mvnw.cmd
+
+# General
+.env
+.DS_Store
+.vscode/
+.gitignore

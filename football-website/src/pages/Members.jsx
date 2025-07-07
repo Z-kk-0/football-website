@@ -14,9 +14,11 @@ import "../index.css";
  * @returns {JSX.Element} The rendered members management page.
  */
 
+
+
 export default function Members() {
     const { getJwtHeader } = useAuth(); 
-
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080/api";
     const [users, setUsers] = useState([]);
     const [status, setStatus] = useState(null);
     const availableRoles = ["ROLE_ADMIN", "ROLE_COACH", "ROLE_PLAYER"];
@@ -24,7 +26,7 @@ export default function Members() {
     const getUsers = async () => {
         try {
             const res = await axios.get(
-                "http://localhost:8080/api/users",
+                `${API_URL}/users`,
                 getJwtHeader()
             );
             setUsers(res.data);
@@ -41,7 +43,7 @@ export default function Members() {
     const updateUserRole = async (userId, newRole) => {
         try {
             await axios.put(
-                `http://localhost:8080/api/users/${userId}/role`,
+                `${API_URL}/users/${userId}/role`,
                 { roleName: newRole },
                 getJwtHeader()
             );

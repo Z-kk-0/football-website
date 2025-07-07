@@ -1,4 +1,58 @@
 # football-website
+
+## Deployment-Anleitung (Docker Compose)
+
+1. **Voraussetzungen:**
+   - [Docker](https://www.docker.com/products/docker-desktop/) und [Docker Compose](https://docs.docker.com/compose/) installiert
+
+2. **.env Datei erstellen:**
+   - Erstelle im Projektverzeichnis eine Datei namens `.env` und kopiere folgendes Beispiel hinein (Werte ggf. anpassen):
+     
+     ```env
+     # Backend
+     SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/demo
+     SPRING_DATASOURCE_USERNAME=demo
+     SPRING_DATASOURCE_PASSWORD=demo
+     JWT_SECRET=dein_jwt_secret
+     JWT_EXPIRATION_MS=86400000
+     SPRING_PROFILES_ACTIVE=prod
+
+     # Frontend
+     VITE_API_URL=http://localhost:8080/api
+     ```
+   - Passe die Datei ggf. an (z.B. Datenbank-User, Passwörter, Secrets, API-URL)
+   - **Tipp:** Ein sicheres `JWT_SECRET` kannst du z.B. so generieren:
+     - Linux/Mac/WSL:
+       ```sh
+       head -c 32 /dev/urandom | base64
+       ```
+     - Windows (PowerShell):
+       ```powershell
+       [Convert]::ToBase64String((1..32 | ForEach-Object {Get-Random -Minimum 0 -Maximum 256}) -as [byte[]])
+       ```
+     - Diesen Wert dann als `JWT_SECRET` in die `.env` eintragen.
+
+3. **Build & Start:**
+   - Im Projektverzeichnis folgenden Befehl ausführen:
+     ```sh
+     docker compose --env-file .env up --build
+     ```
+
+4. **Zugriff auf die App:**
+   - Frontend: [http://localhost:5173](http://localhost:5173)
+   - Backend API: [http://localhost:8080](http://localhost:8080)
+   - MySQL: Port 3306
+
+5. **Stoppen:**
+   - Mit `Ctrl+C` im Terminal stoppen oder im Projektverzeichnis:
+     ```sh
+     docker compose down
+     ```
+
+**Hinweis:**
+- Die wichtigsten Einstellungen (z.B. Passwörter, Secrets, API-URL) werden über die `.env`-Datei gesteuert.
+- Die App ist nach dem Build sofort einsatzbereit.
+
 ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Z-kk-0/football-website?utm_source=oss&utm_medium=github&utm_campaign=Z-kk-0%2Ffootball-website&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 # Informieren
 ## Projektvision
@@ -501,7 +555,6 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 | ------------------------------------------------------------------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------- |
 | JWT Expired und man wird nicht ausgeloggt                                             | JWT token expired nach zeit   | vor jeder backend request JWT Token checken                                                         |
 | HTTP fehlermeldungen geben immer 401 Unauthorized raus                                | schlechte Request auf backend | Message Response Anpassen vielleicht etwas in der Security Config                                   |
-| Logout wird angezeigt wenn nicht eingeloggt und login registirierung wenn eingelogged | /                             | Protected Routes nur rendern wenn eingeloggt und nicht login registrieren nur wenn nicht eingeloggt |
 
 ## Ideen für Zukünftige Features
 - Multi Team Funktion
