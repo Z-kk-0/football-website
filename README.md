@@ -179,6 +179,36 @@ Folgendes Bewertungsraster wird angewendet
 
 User Stories wurden von ChatGPT nur minimal umgeschrieben und korrigiert
 
+## Sicherheitskonzept
+Das Sicherheitskonzept für dieses Projekt basiert auf den folgenden Prinzipien:
+
+- **Authentifizierung:**
+  - Login/Registrierung mit Username und Passwort
+  - JWT (JSON Web Token) für stateless Authentifizierung im Backend
+  - Token wird im Frontend im LocalStorage gehalten und bei jedem API-Request im Header mitgesendet
+
+- **Autorisierung:**
+  - Zugriff auf geschützte Routen und API-Endpunkte nur mit gültigem JWT
+  - Rollenbasiertes Berechtigungskonzept (z.B. Admin, Coach, Spieler)
+  - Frontend zeigt Navigation und Seiten je nach Rolle/Status
+
+- **Passwortsicherheit:**
+  - Passwörter werden im Backend mit BCrypt gehasht gespeichert
+  - Keine Passwörter im Klartext in der Datenbank
+
+- **Umgang mit Secrets:**
+  - Alle sensiblen Einstellungen (z.B. JWT Secret, DB-Passwörter) werden über `.env` und Umgebungsvariablen gesteuert
+  - `.env` ist nicht im Repository
+
+- **Fehler- und Zugriffsschutz:**
+  - Fehlerausgaben im Backend geben keine sensiblen Details preis
+  - 403-Statuscodes bei unberechtigten Zugriffen
+
+- **Schutz vor typischen Angriffen:**
+  - CSRF-Schutz durch stateless JWT-Architektur
+  - Validierung aller Nutzereingaben (Backend: Bean Validation)
+
+
 ## Backend Plan
 
 ### ERD Diagramm
