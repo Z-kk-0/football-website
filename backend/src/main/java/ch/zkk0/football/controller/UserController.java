@@ -20,6 +20,7 @@ import ch.zkk0.football.model.Role;
 import ch.zkk0.football.model.User;
 import ch.zkk0.football.repository.RoleRepository;
 import ch.zkk0.football.repository.UserRepository;
+import ch.zkk0.football.service.UserService;
 
 /**
  * REST controller for user-related operations.
@@ -38,6 +39,11 @@ public class UserController {
      */
     @Autowired
     RoleRepository roleRepository;
+    /**
+     * Service for user-related operations.
+     */
+    @Autowired
+    UserService userService;
 
     /**
      * Request body for updating a user's role.
@@ -124,34 +130,8 @@ public class UserController {
     @CrossOrigin
     @PutMapping("/{userId}/role")
     public ResponseEntity<?> updateRole(@PathVariable Long userId, @RequestBody RoleUpdateRequest request) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User nicht gefunden"));
-        ERole eRole;
-        try {
-            eRole = ERole.valueOf(request.getRoleName());
-        } catch (IllegalArgumentException ex) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Ungültiger Rollenname: " + request.getRoleName());
-        }
-
-        if (user.getRole().getName() == ERole.ROLE_ADMIN && eRole != ERole.ROLE_ADMIN) {
-        long adminCount = userRepository.countByRoleName(ERole.ROLE_ADMIN);
-
-        if (adminCount <= 1) {
-            throw new ResponseStatusException(
-                    HttpStatus.FORBIDDEN, "Der letzte Admin darf nicht entfernt werden.");
-        }
-    }
-
-        Role role = roleRepository.findByName(eRole);
-        if (role == null) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Role nicht gefunden: " + request.getRoleName());
-        }
-        user.setRole(role);
-        userRepository.save(user);
+        userService.updateUserRole(userId, request.getRoleName());
         return ResponseEntity.ok("Rolle erfolgreich geupdated auf " + request.getRoleName());
-
     }
 
     /**
