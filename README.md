@@ -1,5 +1,5 @@
 # football-website
-
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Z-kk-0/football-website?utm_source=oss&utm_medium=github&utm_campaign=Z-kk-0%2Ffootball-website&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 ## Deployment-Anleitung (Docker Compose)
 
 1. **Voraussetzungen:**
@@ -53,7 +53,7 @@
 - Die wichtigsten Einstellungen (z.B. Passwörter, Secrets, API-URL) werden über die `.env`-Datei gesteuert.
 - Die App ist nach dem Build sofort einsatzbereit.
 
-![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Z-kk-0/football-website?utm_source=oss&utm_medium=github&utm_campaign=Z-kk-0%2Ffootball-website&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
+
 # Informieren
 ## Projektvision
 Ziel dieses Projekts ist es, eine multiuser-fähige Web-App zu entwickeln React im Frontend, Java + MySQL im Backend. Passend zu meinen Interessen habe ich mich für einen Playbook-Manager entschieden, den mehrere Nutzer gleichzeitig verwenden können.
@@ -81,8 +81,8 @@ Folgendes Bewertungsraster wird angewendet
 | Frontend Tests                       | 3 std       |     fertig |
 | Backend Tests                        | 3 std       |      fertig |
 | Test protokoll                      |  1 std      |      fertig |
-| Website Deploybar machen                        | 3 std       |      in progress |
-| Finishing touches für abgabe                    | 3 std       |      in progress |
+| Website Deploybar machen                        | 3 std       |      fertig |
+| Finishing touches für abgabe                    | 3 std       |      fertig |
 | Optionale erweiterungen      | Undefiniert |      -  |
 ## User Story 1 Registration
 **Als** Benutzer  
