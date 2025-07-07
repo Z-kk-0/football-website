@@ -21,6 +21,7 @@ export default function Register() {
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080/api";
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -33,7 +34,7 @@ export default function Register() {
       return;
     }
     try {
-      await axios.post("http://localhost:8080/api/auth/signup", {
+      await axios.post(`${API_URL}/auth/signup`, {
         username: form.username,
         email: form.email,
         password: form.password,

@@ -15,6 +15,7 @@ import "../Modal.css";
  */
 export default function Playbook() {
     const { getJwtHeader, hasAnyRole } = useAuth(); 
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080/api";
 
     const [content, setContent] = useState("");
     const [status, setStatus] = useState(null);
@@ -29,7 +30,7 @@ export default function Playbook() {
 
     const getPlays = async () => {
         try {
-            const res = await axios.get("http://localhost:8080/api/plays", getJwtHeader());
+            const res = await axios.get(`${API_URL}/plays`, getJwtHeader());
             setPlays(res.data);
         } catch (err) {
             console.error("Fehler beim Laden der Plays", err);
@@ -48,7 +49,7 @@ export default function Playbook() {
         }
         try {
             const res = await axios.post(
-                "http://localhost:8080/api/plays",
+                `${API_URL}/plays`,
                 { content },
                 getJwtHeader()
             );
@@ -64,7 +65,7 @@ export default function Playbook() {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:8080/api/plays/${id}`, getJwtHeader());
+            await axios.delete(`${API_URL}/plays/${id}`, getJwtHeader());
             await getPlays();
             setStatus("Play erfolgreich gelöscht");
         } catch (err) {
@@ -80,7 +81,7 @@ export default function Playbook() {
         }
         try {
             await axios.put(
-                `http://localhost:8080/api/plays/${editingPlay.id}`,
+                `${API_URL}/plays/${editingPlay.id}`,
                 { content: editContent },
                 getJwtHeader()
             );

@@ -13,7 +13,7 @@ import { useAuth } from "../functions/AuthContext";
  */
 export default function Home() {
   const [canSeeMembers, setCanSeeMembers] = useState(false);
-  const { hasAnyRole } = useAuth(); // ✅ Hook korrekt aufgerufen
+  const { hasAnyRole } = useAuth(); 
   const navigate = useNavigate();
 
   useEffect(() => {
