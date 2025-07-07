@@ -23,8 +23,10 @@ import ch.zkk0.football.repository.UserRepository;
 import ch.zkk0.football.service.UserService;
 
 /**
- * REST controller for user-related operations.
- * Provides endpoints for retrieving all users and updating user roles.
+ * REST controller for user operations (user management, roles).
+ *
+ * Provides endpoints to retrieve all users and to change user roles.
+ * The business logic for role changes is delegated to UserService (transaction protects admin role).
  */
 @RestController
 @RequestMapping("/api/users")
@@ -121,23 +123,22 @@ public class UserController {
     }
 
     /**
-     * Updates the role of a user.
+     * Updates the role of a user (admin only).
      *
-     * @param userId the ID of the user
-     * @param request the request body containing the new role name
-     * @return ResponseEntity with status and message
+     * @param userId ID of the user
+     * @param request New role
+     * @return Success message or error
      */
     @CrossOrigin
     @PutMapping("/{userId}/role")
     public ResponseEntity<?> updateRole(@PathVariable Long userId, @RequestBody RoleUpdateRequest request) {
         userService.updateUserRole(userId, request.getRoleName());
-        return ResponseEntity.ok("Rolle erfolgreich geupdated auf " + request.getRoleName());
+        return ResponseEntity.ok("Role successfully updated to " + request.getRoleName());
     }
-
     /**
-     * Retrieves a list of all users.
+     * Returns all users as a list.
      *
-     * @return ResponseEntity with a list of UserResponse
+     * @return List of all users (id, username, email, role)
      */
     @CrossOrigin
     @GetMapping

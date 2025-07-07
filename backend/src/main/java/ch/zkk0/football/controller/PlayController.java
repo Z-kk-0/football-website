@@ -18,6 +18,14 @@ import ch.zkk0.football.repository.PlayRepository;
 
 import jakarta.validation.Valid;
 
+/**
+ * REST controller for Play objects (plays).
+ *
+ * Provides endpoints to create, edit, delete, and retrieve plays.
+ * The business logic is simple, as plays only contain a string.
+ *
+ * Transactions are not needed here, as each operation is atomic (one play per request).
+ */
 @RestController
 @RequestMapping("/api/plays")
 public class PlayController {
@@ -25,9 +33,9 @@ public class PlayController {
     PlayRepository playRepository; 
 
     /**
-     * Retrieves all Play entities.
+     * Returns all stored plays.
      *
-     * @return a ResponseEntity containing the list of all Play objects and HTTP status 200 (OK)
+     * @return List of all plays (status 200)
      */
     @GetMapping
     public ResponseEntity<List<Play>> getAllPlays() {
@@ -36,10 +44,10 @@ public class PlayController {
     }
 
     /**
-     * Creates a new Play entity from the provided request body and returns the saved entity.
+     * Creates a new play.
      *
-     * @param request the Play object to be created, validated from the request body
-     * @return a ResponseEntity containing the created Play and HTTP status 201 (Created)
+     * @param request Play object (content only)
+     * @return The saved play (status 201)
      */
     @PostMapping
     public ResponseEntity<Play> createPlay(@Valid @RequestBody Play request) {
@@ -48,13 +56,11 @@ public class PlayController {
     }
 
     /**
-     * Updates an existing Play entity identified by the given ID with new content.
+     * Updates a play by ID.
      *
-     * If the Play entity with the specified ID exists, its content is updated with the value from the request body and the updated entity is returned with HTTP 200 OK. If the entity does not exist, returns HTTP 404 Not Found.
-     *
-     * @param Id the ID of the Play entity to update
-     * @param request the Play object containing updated content
-     * @return ResponseEntity containing the updated Play entity or HTTP 404 if not found
+     * @param Id ID of the play to update
+     * @param request New play object (content only)
+     * @return The updated play (status 200) or 404 if not found
      */
     @PutMapping("/{Id}")
     public ResponseEntity<Play> updatePlay(@PathVariable Long Id, @Valid @RequestBody Play request) {
@@ -68,15 +74,12 @@ public class PlayController {
     }
 
     /**
- * Deletes a Play entity by its ID.
- *
- * If the Play with the specified ID does not exist, returns HTTP 404 Not Found.
- * If the deletion is successful, returns HTTP 204 No Content.
- *
- * @param id the ID of the Play to delete
- * @return a ResponseEntity indicating the outcome of the deletion
- */
-@DeleteMapping("/{id}")
+     * Deletes a play by ID.
+     *
+     * @param id ID of the play to delete
+     * @return 204 No Content or 404 if not found
+     */
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePlay(@PathVariable Long id) {
         if (!playRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
@@ -84,7 +87,7 @@ public class PlayController {
 
         playRepository.deleteById(id);
         return ResponseEntity.noContent().build();
-}
+    }
 
 
 

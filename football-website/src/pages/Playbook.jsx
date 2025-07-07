@@ -109,10 +109,10 @@ export default function Playbook() {
                         {play.content}
                         {hasCRUDPerms && (
                             <>
-                                <button style={{ marginLeft: "1rem" }} onClick={() => handleDelete(play.id)}>
+                                <button className="ml-1" onClick={() => handleDelete(play.id)}>
                                     Löschen
                                 </button>
-                                <button onClick={() => openEditModal(play)} style={{ marginLeft: "0.5rem" }}>
+                                <button className="ml-05" onClick={() => openEditModal(play)}>
                                     Bearbeiten
                                 </button>
                             </>

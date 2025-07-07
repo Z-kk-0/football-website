@@ -20,16 +20,21 @@ button {
   background-color: var(--color-primary);
   color: black;
   border: none;
-  padding: 10px 20px;
-  margin: 5px;
+  padding: 10px 24px;
+  margin: 8px 0;
   border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s, box-shadow 0.2s;
+  box-shadow: 0 2px 6px rgba(30,58,138,0.04);
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
-button:hover {
-  background-color: #fcd34d; 
+button:hover, button:focus {
+  background-color: #fcd34d;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(30,58,138,0.10);
 }
 
 a {
@@ -47,4 +52,12 @@ h1 {
   padding: 0.3rem;
   font-size: 0.8rem;
   border-radius: 4px;
+}
+
+.ml-1 {
+  margin-left: 1rem;
+}
+
+.ml-05 {
+  margin-left: 0.5rem;
 }
