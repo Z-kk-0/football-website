@@ -1,5 +1,37 @@
 # football-website
 ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Z-kk-0/football-website?utm_source=oss&utm_medium=github&utm_campaign=Z-kk-0%2Ffootball-website&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
+
+## Inhaltsverzeichnis
+
+- [Deployment-Anleitung (Docker Compose)](#deployment-anleitung-docker-compose)
+- [Informieren](#informieren)
+  - [Projektvision](#projektvision)
+  - [Bewertungsraster](#bewertungsraster)
+- [Planen](#planen)
+  - [Arbeitsplan](#arbeitsplan)
+  - [User Stories](#user-story-1-registration)
+  - [Sicherheitskonzept](#sicherheitskonzept)
+  - [Backend Plan](#backend-plan)
+    - [ERD Diagramm](#erd-diagramm)
+    - [Endpoint planung](#endpoint-planung)
+    - [Klassendiagramm](#klassendiagramm)
+  - [Frontend-Plan](#frontend-plan)
+    - [Tech-Stack](#tech-stack)
+    - [UI-Guidelines](#ui-guidelines)
+    - [Seiten & Komponenten](#seiten--komponenten)
+    - [Routing-Plan](#routing-plan)
+    - [Wireframe](#wireframe)
+  - [Testplan](#testplan)
+- [Realisieren](#realisieren)
+  - [Arbeitsjournal](#arbeitsjournal)
+- [Kontrollieren](#kontrollieren)
+  - [Testprotokoll](#testprotokoll)
+- [Auswerten](#auswerten)
+  - [Soll-Ist Vergleich](#soll-ist-vergleich)
+  - [Problemanalyse](#problemanalyse)
+  - [Ideen für Zukünftige Features](#ideen-für-zukünftige-features)
+  - [Fazit](#fazit)
+
 ## Deployment-Anleitung (Docker Compose)
 
 1. **Voraussetzungen:**
@@ -573,7 +605,7 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 | Soll                                                       | Ist                                                            | Kommentar                                                                                                                                                                                                                                                                                                                     |
 | ---------------------------------------------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Multi-Team                                                 | Single-Team                                                    | Nach weiterer Überlegung und Zeitdruck  bin ich auf Single User umgestiegen.<br>Es Ergibt auch mehr sinn für das Projekt an sich, da sich Multi-Team erst dann lohnt wenn man auch<br>Soziale Interaktionen zwischen Teams hat oder ein Spieler in Mehreren Teams ist. So het Theoretisch jedes Team seinen eigenen<br>Server |
-| Beim löschen von Plays Bestätigungs Dialog                 | Kein Bestätigungs Dialog                                       | Da der Play nur ein String ist kann man ihn einfach wieder erstellen.<br>Wäre etwas für zukünftigere verfeinerungen                                                                                                                                                                                                           |
+| Beim löschen von Plays Bestätigungs Dialog                 | Kein Bestätigungs Dialog                                       | Da der Play nur ein String ist kann man ihn einfach wieder erstellen.<br>Wäre etwas für zukünftige verfeinerungen                                                                                                                                                                                                           |
 | Einladungen                                                | Keine Einladungen                                              | Ohne Multi User sehe ich keine begründung dazu aber ergibt auch<br>in einer Single-Team Welt sinn weil man ja nicht will, dass jeder die Plays sieht.                                                                                                                                                                         |
 | Teams verlassen und Mitglieder entfernen                   | Teams kann man nicht verlassen und Mitglieder nicht entfernbar | ist ohne Multi-Team nicht nötig                                                                                                                                                                                                                                                                                               |
 | MemberList, PlayList, PlayEditorModal Frontend Komponenten | alles in Playbook.jsx oder Members.jsx.                        | Code war schon minimal. Für erweiterungen wäre es gut, diese zu<br>separieren                                                                                                                                                                                                                                                 |
