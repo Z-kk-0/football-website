@@ -616,7 +616,7 @@ Das Klassendiagramm wurde von ChatGPT korrigiert.
 | Problem                                                                               | Wie tritt es auf              | Lösungsvorschlag                                                                                    |
 | ------------------------------------------------------------------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------- |
 | JWT Expired und man wird nicht ausgeloggt                                             | JWT token expired nach zeit   | vor jeder backend request JWT Token checken                                                         |
-| HTTP fehlermeldungen geben immer 401 Unauthorized raus                                | schlechte Request auf backend | Message Response Anpassen vielleicht etwas in der Security Config                                   |
+| HTTP fehlermeldungen geben immer 401 Unauthorized raus                                | schlechte Request auf backend | Global exception handler im Backend einfügen                                |
 
 ## Ideen für Zukünftige Features
 - Multi Team Funktion
